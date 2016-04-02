@@ -3,6 +3,9 @@
 <head>
 	<title>Doctor Who News &amp; Events</title>
 
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+
 	<!-- Jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<!-- Handlebars -->
@@ -99,8 +102,10 @@
 	}
 </script>
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
+<div id="fbLogin">
+	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+	</fb:login-button>
+</div>
 
 <div id="status">
 </div>
