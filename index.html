@@ -12,31 +12,16 @@
 	<script type="text/javascript" src="app.js"></script>
 </head>
 <body>
-<!-- Facebook SDK -->
-<div id="fb-root"></div>
-<script>
-  window.fbAsyncInit = function() {
-	FB.init({
-	  appId      : '1044352888957826',
-	  xfbml      : true,
-	  version    : 'v2.5'
-	});
-  };
-
-  (function(d, s, id){
-	 var js, fjs = d.getElementsByTagName(s)[0];
-	 if (d.getElementById(id)) {return;}
-	 js = d.createElement(s); js.id = id;
-	 js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1044352888957826";
-	 fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 <marquee>Doctor Who News! -- Coming soon!</marquee>
+<div id="sign-in-view">
+	<button><a href="https://api.instagram.com/oauth/authorize/?client_id=ce64a3946e194bed87600d4d8f0b51fa&redirect_uri=http://alexberen.github.io&response_type=token">Log In To Instagram</a></button>
+</div>
 
-<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" scope="public_profile,email" onlogin="checkLoginState();"></div>
-
-<div id="status">
+<div id="results-view">
+	<div class="images">
+		
+	</div>
 </div>
 
 </body>
