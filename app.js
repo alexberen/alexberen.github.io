@@ -10,6 +10,10 @@ function isRedirectedURI() {
 		$signInView.hide();
 		$resultsView.show();
 
+		var accessToken = uriHash.replace('#access_token=', '');
+
+		var instagramEndpoint = 'https://api.instagram.com/v1/media/media-id&access_token=' + accessToken;
+
 			$.ajax({
 				url: instagramEndpoint,
 				method: 'GET',
@@ -37,8 +41,4 @@ function isRedirectedURI() {
 // navigator.geolocation.getCurrentPosition(function(position){
 // 	var lat = position.coords.latitude;
 // 	var long = position.coords.longitude;
-
-// 	var accessToken = uriHash.replace('#access_token=', '');
-
-// 	var instagramEndpoint = 'https://api.instagram.com/v1/media/search?lat=' + lat + '&lng=' + long + '&access_token=' + accessToken;
 // });
