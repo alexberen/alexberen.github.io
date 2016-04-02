@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+	console.log("Logging from app.js");
 })
 
 // $subreddit.on('keyup', function(e) {
