@@ -12,7 +12,7 @@ function isRedirectedURI() {
 
 		var accessToken = uriHash.replace('#access_token=', '');
 
-		var instagramEndpoint = 'https://api.instagram.com/v1/media/{media-id}&access_token=' + accessToken;
+		var instagramEndpoint = 'https://api.instagram.com/v1/tags/search?q=doctorwho&access_token=' + accessToken;
 
 			$.ajax({
 				url: instagramEndpoint,
