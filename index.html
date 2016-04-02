@@ -91,7 +91,7 @@
 	}(document, 'script', 'facebook-jssdk'));
 
 	// Here we run a very simple test of the Graph API after login is
-	// successful.  See statusChangeCallback() for when this call is made.
+	// successful. See statusChangeCallback() for when this call is made.
 	function testAPI() {
 		console.log('Welcome!  Fetching your information.... ');
 		FB.api('/me', function(response) {
@@ -101,10 +101,7 @@
 	}
 </script>
 
-<div id="fbLogin">
-	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-	</fb:login-button>
-</div>
+<div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" scope="public_profile,email" onlogin="checkLoginState();"></div>
 
 <div id="status">
 </div>
