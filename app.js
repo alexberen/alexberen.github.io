@@ -21,13 +21,14 @@ function isRedirectedURI() {
 				success: function(response) {
 					console.log(response);
 					var data = response.data;
+					console.log(data);
 
-					data.forEach(function(photo){
-						var url = photo.images.thumbnail.url;
-						var $imageEl = $('<img src="' + url + '" />');
+					// data.forEach(function(photo){
+					// 	var url = photo.images.thumbnail.url;
+					// 	var $imageEl = $('<img src="' + url + '" />');
 
-						$imagesDiv.append($imageEl);
-					})
+					// 	$imagesDiv.append($imageEl);
+					// })
 				}
 			})
 
