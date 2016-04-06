@@ -1,45 +1,33 @@
-$.ready(isRedirectedURI());
+$(document).ready(function() {
+	// integrate Firebase
+	var firebase = new Firebase('https://taskstodo.firebaseio.com');
 
-function isRedirectedURI() {
-	var uriHash = window.location.hash;
-	var $signInView = $('#sign-in-view');
-	var $resultsView = $('#results-view');
-	var $imagesDiv = $('.images');
+	// Caching global variables
+	var $addTaskForm = $('#addTaskForm');
 
-	if(uriHash.length > 0) {
-		$signInView.hide();
-		$resultsView.show();
-
-		var accessToken = uriHash.replace('#access_token=', '');
-
-		var instagramEndpoint = 'https://api.instagram.com/v1/tags/search?q=doctorwho&access_token=' + accessToken + '&scope=public_content';
-
-			$.ajax({
-				url: instagramEndpoint,
-				method: 'GET',
-				dataType: 'jsonp',
-				success: function(response) {
-					console.log(response);
-					var data = response.data;
-					console.log(data);
-
-					// data.forEach(function(photo){
-					// 	var url = photo.images.thumbnail.url;
-					// 	var $imageEl = $('<img src="' + url + '" />');
-
-					// 	$imagesDiv.append($imageEl);
-					// })
-				}
-			})
-
-	} else {
-		$signInView.show();
-		$resultsView.hide();
+	// Setting name to display in title
+	function setUserName() {
+		var $userName = $('#userName');
+		var title = prompt("What's your name?") + "'s TasksToDo";
+		$userName.text(title);
 	}
-}
 
+	// Creating tasks
+	$addTaskForm.submit(function(e) {
+		e.preventDefault(e);
 
-// navigator.geolocation.getCurrentPosition(function(position){
-// 	var lat = position.coords.latitude;
-// 	var long = position.coords.longitude;
-// });
+		// Variables in this function's scope
+		var $taskName = $('#taskName'),
+			$taskDescription = $('#taskDescription');
+			$taskCategory = $('#taskCategory');
+
+		// Create 'task' object in Firebase
+		firebase.child('task').push({
+			taskName: $taskName.val(),
+			taskDescription: $taskDescription.val(),
+			taskCategory: $taskCategory.val()
+		})
+	})
+
+	setUserName();
+})

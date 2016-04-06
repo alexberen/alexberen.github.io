@@ -1,28 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Doctor Who News &amp; Events</title>
+	<title>TaskToDo</title>
 
-	<!-- CSS -->
+	<!-- Stylesheet -->
 	<link rel="stylesheet" type="text/css" href="style.css">
 
-	<!-- Jquery -->
+	<!-- jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-	<!-- JavaScript file -->
+	<!-- firebase -->
+	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+	<!-- javascript file -->
 	<script type="text/javascript" src="app.js"></script>
 </head>
 <body>
+	<header>
+		<h1 id="userName"></h1>
+		<h2>Because somewhere there's a task you should be doing...eventually</h2>
+	</header>
 
-<marquee>Doctor Who News! -- Coming soon!</marquee>
-<div id="sign-in-view">
-	<button><a href="https://api.instagram.com/oauth/authorize/?client_id=ce64a3946e194bed87600d4d8f0b51fa&redirect_uri=http://alexberen.github.io&response_type=token">Log In To Instagram</a></button>
-</div>
-
-<div id="results-view">
-	<div class="images">
-		
+	<div id="add-tasks">
+		<h3>Add a Task</h3>
+		<form id="addTaskForm">
+			<div class="addTaskLabel">Task Name:</div>
+			<input type="text" id="taskName" />
+			<div class="addTaskLabel">More Information:</div>
+			<textarea id="taskDescription"></textarea>
+			<div class="addTaskLabel">Category:</div>
+			<input type="text" id="taskCategory" />
+			<input type="submit" value="Add Task" id="addTaskButton" />
+		</form>
 	</div>
-</div>
+
+	<div>
+		<h3>Tasks In Progress</h3>
+		<p id="categoryLinks"></p>
+		<div id="tasks" class="container"></div>
+	</div>
+	
+
+	<div>
+		<h3>Completed Tasks</h3>
+		<div id="completed-tasks" class="container">
+	</div>
 
 </body>
 </html>
