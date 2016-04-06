@@ -9,7 +9,7 @@ $(document).ready(function() {
 	function setUserName() {
 		var $userName = $('#userName');
 		var title = prompt("What's your name?") + "'s TasksToDo";
-		$userName.text(title);
+		$userName.html(title);
 	}
 
 	// Creating tasks
@@ -30,6 +30,11 @@ $(document).ready(function() {
 
 		// calling function to generation HTML for in progress tasks
 		generateInProgressHTML();
+		
+		// clear form fields
+		$taskName.val('');
+		$taskDescription.val('');
+		$taskCategory.val('');
 	})
 
 	// Generating HTML for in progress tasks
@@ -38,7 +43,7 @@ $(document).ready(function() {
 			var $inProgressTasks = ('#inProgressTasks'),
 				values = results.val();
 
-			$inProgressTasks.empty();
+			// $inProgressTasks.empty();
 
 			for(var key in values) {
 				var task = values[key],
@@ -50,6 +55,7 @@ $(document).ready(function() {
 		})
 	}
 
+	// functions to call when the document is ready
 	setUserName();
 	generateInProgressHTML();
 })
