@@ -27,7 +27,29 @@ $(document).ready(function() {
 			taskDescription: $taskDescription.val(),
 			taskCategory: $taskCategory.val()
 		})
+
+		// calling function to generation HTML for in progress tasks
+		generateInProgressHTML();
 	})
 
+	// Generating HTML for in progress tasks
+	function generateInProgressHTML() {
+		firebase.child('task').on('value', function(results) {
+			var $inProgressTasks = ('#inProgressTasks'),
+				values = results.val();
+
+			// $inProgressTasks.empty();
+
+			for(var key in values) {
+				var task = values[key],
+					$taskContainer = $('<div class="taskContainer"><h3 class="taskName">' + task.taskName + '</h3><p class="taskCategory">' + task.taskCategory + '</p><p class="taskDescription">' + task.taskDescription + '</p><button id="completeTaskButton">Complete Task</button</div>');
+
+			$taskContainer.append($inProgressTasks);
+
+			}
+		})
+	}
+
 	setUserName();
+	generateInProgressHTML();
 })
