@@ -49,35 +49,35 @@ $(document).ready(function() {
 
 			for(var key in values) {
 				var task = values[key],
-					$taskContainer = $('<div data-id="' + key + '" class="taskContainer"><h3 class="taskName">' + task.taskName + '</h3><p class="taskCategory">' + task.taskCategory + '</p><p class="taskDescription">' + task.taskDescription + '</p><button id="completeTaskButton">Complete Task</button</div>'),
+					$completeButton = $('<button class="completeTaskButton">Complete Task</button>'),
+					$taskContainer = $('<div data-id="' + key + '" class="taskContainer"><h3 class="taskName">' + task.taskName + '</h3><p class="taskCategory">' + task.taskCategory + '</p><p class="taskDescription">' + task.taskDescription + '</p></div>'),
 					taskID = $(this).data('id'),
 					taskReference = firebase.child('task').child(taskID);
 
-				if(taskReference.status == 'In Progress') {
-					$taskContainer.appendTo($inProgressTasks);
-				} else {
-					$taskContainer.appendTo($completedTasks);
-				}
+				$taskContainer.append($completeButton);
+
+				// Completing tasks
+				$completeButton.on('click', function(e) {
+
+					// var taskID = $(this).data('id'),
+					// 	taskReference = firebase.child('task').child(taskID);
+
+					// taskReference.update({
+					// 	status: 'Complete'
+					// })
+					console.log("you clicked da button");
+
+					// generateInProgressHTML();
+
+				})
+
+				$taskContainer.appendTo($inProgressTasks);
 
 			}
+
 		})
 
 	}
-
-	// Completing tasks
-	$('#completeTaskButton').on('click', function(e) {
-		e.preventDefault();
-
-		var taskID = $(this).data('id'),
-			taskReference = firebase.child('task').child(taskID);
-
-		taskReference.update({
-			status: 'Complete'
-		})
-
-		generateInProgressHTML();
-
-	})
 
 	// functions to call when the document is ready
 	setUserName();
