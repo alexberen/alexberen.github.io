@@ -38,13 +38,13 @@ $(document).ready(function() {
 			var $inProgressTasks = ('#inProgressTasks'),
 				values = results.val();
 
-			// $inProgressTasks.empty();
+			$inProgressTasks.empty();
 
 			for(var key in values) {
 				var task = values[key],
 					$taskContainer = $('<div class="taskContainer"><h3 class="taskName">' + task.taskName + '</h3><p class="taskCategory">' + task.taskCategory + '</p><p class="taskDescription">' + task.taskDescription + '</p><button id="completeTaskButton">Complete Task</button</div>');
 
-			$taskContainer.append($inProgressTasks);
+			$taskContainer.appendTo($inProgressTasks);
 
 			}
 		})
