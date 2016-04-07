@@ -7,6 +7,8 @@ $(document).ready(function() {
 
 	// Setting name to display in title
 
+	// Sorting tasks and using handlebars to generate html
+
 	// Creating tasks
 	$addTaskForm.submit(function(e) {
 		e.preventDefault(e);
