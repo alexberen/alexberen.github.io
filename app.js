@@ -3,7 +3,10 @@ $(document).ready(function() {
 	var firebase = new Firebase('https://taskstodo.firebaseio.com');
 
 	// Caching global variables
-	var $addTaskForm = $('#addTaskForm');
+	var $addTaskForm = $('#addTaskForm'),
+		$inProgressTasks = $('#inProgressTasks'),
+		source   = $('#tasktodo').html(),
+		template = Handlebars.compile(source);
 
 	// Setting name to display in title
 
@@ -11,10 +14,19 @@ $(document).ready(function() {
 	function sortTasks() {
 		firebase.child('task').once('value', function(snapshot) {
 			snapshot.forEach(function(childSnapshot) {
-				var key = childSnapshot.key();
-				console.log(key);
 				var childData = childSnapshot.val();
-				console.log(childData.status);
+
+				if(childData.status == 'In Progress') {
+					var context = {
+						taskName: childData.taskName,
+						taskCategory: childData.taskCategory,
+						taskDescription: childData.taskDescription
+					};
+					var html = template(context);
+					$inProgressTasks.append(html);
+				} else {
+					
+				}
 			});
 		});
 	}
