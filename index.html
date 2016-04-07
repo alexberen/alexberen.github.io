@@ -49,10 +49,17 @@
 		</div>
 	</div>
 	
-
 	<div>
 		<h2>Completed Tasks</h2>
 		<div id="completedTasks" class="container">
+			<script id="taskdone" type="text/x-handlebars-template">
+				<div data-id="{{dataID}}" class="taskContainer">
+					<h3 class="completedName">{{completedName}}</h3>
+					<p class="completedCategory">{{completedCategory}}</p>
+					<p class="completedDescription">{{completedDescription}}</p>
+				</div>
+			</script>
+		</div>
 	</div>
 
 </body>

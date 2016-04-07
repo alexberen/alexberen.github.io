@@ -5,8 +5,13 @@ $(document).ready(function() {
 	// Caching global variables
 	var $addTaskForm = $('#addTaskForm'),
 		$inProgressTasks = $('#inProgressTasks'),
-		source   = $('#tasktodo').html(),
-		template = Handlebars.compile(source);
+		$completedTasks = $('#completedTasks');
+
+	// Handlebars variables
+	var source = $('#tasktodo').html(),
+		template = Handlebars.compile(source),
+		sourceCompleted = $('#taskdone').html(),
+		templateCompleted = Handlebars.compile(sourceCompleted);
 
 	// Setting name to display in title
 
@@ -25,13 +30,18 @@ $(document).ready(function() {
 					var html = template(context);
 					$inProgressTasks.append(html);
 				} else {
-					
+					var context = {
+						completedName: childData.taskName,
+						completedCategory: childData.taskCategory,
+						completedDescription: childData.taskDescription
+					};
+					var html = templateCompleted(context);
+					$completedTasks.append(html);
 				}
 			});
 		});
 	}
-	sortTasks();
-
+	
 	// Creating tasks
 	$addTaskForm.submit(function(e) {
 		e.preventDefault(e);
@@ -48,9 +58,6 @@ $(document).ready(function() {
 			taskDescription: $taskDescription.val(),
 			taskCategory: $taskCategory.val()
 		})
-
-		// calling function to generation HTML for in progress tasks
-		generateInProgressHTML();
 		
 		// clear form fields
 		$taskName.val('');
@@ -58,44 +65,6 @@ $(document).ready(function() {
 		$taskCategory.val('');
 	})
 
-	// Generating HTML for in progress tasks
-	function generateInProgressHTML() {
-		firebase.child('task').on('value', function(results) {
-			var $inProgressTasks = $('#inProgressTasks'),
-				$completedTasks = $('#completedTasks'),
-				values = results.val();
-
-			$inProgressTasks.empty();
-
-			for(var key in values) {
-				var task = values[key],
-					$completeButton = $('<button class="completeTaskButton">Complete Task</button>'),
-					$taskContainer = $('<div data-id="' + key + '" class="taskContainer"><h3 class="taskName">' + task.taskName + '</h3><p class="taskCategory">' + task.taskCategory + '</p><p class="taskDescription">' + task.taskDescription + '</p></div>');
-
-				$taskContainer.append($completeButton);
-
-				// Completing tasks
-				$completeButton.on('click', function(e) {
-					var taskID = $taskContainer.data('id'),
-						taskReference = firebase.child('task').child(taskID);
-
-					taskReference.update({
-						status: 'Complete'
-					})
-
-				})
-
-				$taskContainer.appendTo($inProgressTasks);
-
-				firebase.orderByChild('status').on('value', function(results) {
-					
-				})
-
-			}
-		})
-
-	}
-
 	// functions to call when the document is ready
-	// generateInProgressHTML();
+	sortTasks();
 })
