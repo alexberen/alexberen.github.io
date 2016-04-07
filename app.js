@@ -8,6 +8,17 @@ $(document).ready(function() {
 	// Setting name to display in title
 
 	// Sorting tasks and using handlebars to generate html
+	function sortTasks() {
+		firebase.child('task').once('value', function(snapshot) {
+			snapshot.forEach(function(childSnapshot) {
+				var key = childSnapshot.key();
+				console.log(key);
+				var childData = childSnapshot.val();
+				console.log(childData.status);
+			});
+		});
+	}
+	sortTasks();
 
 	// Creating tasks
 	$addTaskForm.submit(function(e) {
@@ -74,6 +85,5 @@ $(document).ready(function() {
 	}
 
 	// functions to call when the document is ready
-	// setUserName();
-	generateInProgressHTML();
+	// generateInProgressHTML();
 })
