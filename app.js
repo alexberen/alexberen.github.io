@@ -6,11 +6,6 @@ $(document).ready(function() {
 	var $addTaskForm = $('#addTaskForm');
 
 	// Setting name to display in title
-	function setUserName() {
-		var $userName = $('#userName');
-		var title = prompt("What's your name?") + "'s TasksToDo";
-		$userName.html(title);
-	}
 
 	// Creating tasks
 	$addTaskForm.submit(function(e) {
@@ -67,12 +62,16 @@ $(document).ready(function() {
 
 				$taskContainer.appendTo($inProgressTasks);
 
+				firebase.orderByChild('status').on('value', function(results) {
+					
+				})
+
 			}
 		})
 
 	}
 
 	// functions to call when the document is ready
-	setUserName();
+	// setUserName();
 	generateInProgressHTML();
 })
