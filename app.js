@@ -66,6 +66,7 @@ $(document).ready(function() {
 	function sortTasks() {
 		$inProgressTasks.empty();
 		$completedTasks.empty();
+		
 		var uid = firebase.getAuth().uid;
 		firebase.child('users').child(uid).child('task').once('value', function(snapshot) {
 			snapshot.forEach(function(childSnapshot) {
