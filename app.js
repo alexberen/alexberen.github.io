@@ -60,31 +60,31 @@ $(document).ready(function() {
 	})
 
 	// Sorting tasks and using handlebars to generate html
-	// function sortTasks() {
-	// 	firebase.child('users').child('task').once('value', function(snapshot) {
-	// 		snapshot.forEach(function(childSnapshot) {
-	// 			var childData = childSnapshot.val();
+	function sortTasks() {
+		firebase.child('users').child(authData.uid).child('task').once('value', function(snapshot) {
+			snapshot.forEach(function(childSnapshot) {
+				var childData = childSnapshot.val();
 
-	// 			if(childData.status == 'In Progress') {
-	// 				var context = {
-	// 					taskName: childData.taskName,
-	// 					taskCategory: childData.taskCategory,
-	// 					taskDescription: childData.taskDescription
-	// 				};
-	// 				var html = template(context);
-	// 				$inProgressTasks.append(html);
-	// 			} else {
-	// 				var context = {
-	// 					completedName: childData.taskName,
-	// 					completedCategory: childData.taskCategory,
-	// 					completedDescription: childData.taskDescription
-	// 				};
-	// 				var html = templateCompleted(context);
-	// 				$completedTasks.append(html);
-	// 			}
-	// 		});
-	// 	});
-	// }
+				if(childData.status == 'In Progress') {
+					var context = {
+						taskName: childData.taskName,
+						taskCategory: childData.taskCategory,
+						taskDescription: childData.taskDescription
+					};
+					var html = template(context);
+					$inProgressTasks.append(html);
+				} else {
+					var context = {
+						completedName: childData.taskName,
+						completedCategory: childData.taskCategory,
+						completedDescription: childData.taskDescription
+					};
+					var html = templateCompleted(context);
+					$completedTasks.append(html);
+				}
+			});
+		});
+	}
 	
 	// Creating tasks
 	$addTaskForm.submit(function(e) {
