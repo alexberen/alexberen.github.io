@@ -50,7 +50,7 @@ $(document).ready(function() {
 				$loggingIn.hide();
 			}
 		});
-		return uid;
+		return authData.uid;
 	})
 
 	// Event Listener for logging out
@@ -98,7 +98,7 @@ $(document).ready(function() {
 			$taskCategory = $('#taskCategory');
 
 		// Create 'task' object in Firebase
-		firebase.child('users').child(uid).child('task').push({
+		firebase.child('users').child(authData.uid).child('task').push({
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
