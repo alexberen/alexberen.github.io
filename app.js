@@ -5,7 +5,11 @@ $(document).ready(function() {
 	// Caching global variables
 	var $addTaskForm = $('#addTaskForm'),
 		$inProgressTasks = $('#inProgressTasks'),
-		$completedTasks = $('#completedTasks');
+		$completedTasks = $('#completedTasks'),
+		$loggedInView = $('#loggedInView'),
+		$loggingIn = $('#loggingIn'),
+		$logInButton = $('#logInButton'),
+		authData = firebase.getAuth();
 
 	// Handlebars variables
 	var source = $('#tasktodo').html(),
@@ -13,7 +17,29 @@ $(document).ready(function() {
 		sourceCompleted = $('#taskdone').html(),
 		templateCompleted = Handlebars.compile(sourceCompleted);
 
-	// Setting name to display in title
+	// Hide the logged in vew and check if user is logged in. If yes, hides login screen and shows logged in view
+	$loggedInView.hide();
+	
+	function isAuthenicated() {
+		if(authData) {
+			$loggedInView.show();
+			$loggingIn.hide();
+		}
+	}
+	isAuthenicated();
+
+	// Event Listener for logging in with Google
+	$logInButton.click(function(e) {
+		firebase.authWithOAuthPopup('google', function(error, authData) {
+			if (error) {
+				console.log("Login Failed!", error);
+			} else {
+				console.log("Authenticated successfully with payload:", authData);
+				$loggedInView.show();
+				$loggingIn.hide();
+			}
+		});
+	})
 
 	// Sorting tasks and using handlebars to generate html
 	function sortTasks() {
@@ -69,5 +95,6 @@ $(document).ready(function() {
 	})
 
 	// functions to call when the document is ready
+
 	sortTasks();
 })

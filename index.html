@@ -16,49 +16,56 @@
 	<script type="text/javascript" src="app.js"></script>
 </head>
 <body>
-	<header>
-		<h1 id="userName"></h1>
-		<h2>Because somewhere there's a task you should be doing...eventually</h2>
-	</header>
-
-	<div id="add-tasks">
-		<h2>Add a Task</h2>
-		<form id="addTaskForm">
-			<div class="addTaskLabel">Task Name:</div>
-			<input type="text" id="taskName" />
-			<div class="addTaskLabel">More Information:</div>
-			<textarea id="taskDescription"></textarea>
-			<div class="addTaskLabel">Category:</div>
-			<input type="text" id="taskCategory" />
-			<input type="submit" value="Add Task" id="addTaskButton" />
-		</form>
+	<div id="loggingIn">
+		<h1>Welcome to TasksToDo!</h1>
+		<button id="logInButton">Log in with Google to get started on your tasks</button>
 	</div>
 
-	<div>
-		<h2>Tasks In Progress</h2>
-		<p id="categoryLinks"></p>
-		<div id="inProgressTasks" class="container">
-			<script id="tasktodo" type="text/x-handlebars-template">
-				<div data-id="{{dataID}}" class="taskContainer">
-					<h3 class="taskName">{{taskName}}</h3>
-					<p class="taskCategory">{{taskCategory}}</p>
-					<p class="taskDescription">{{taskDescription}}</p>
-					<button class="completeTaskButton">Complete Task</button>
-				</div>
-			</script>
+	<div id="loggedInView">
+		<header>
+			<h1 id="userName"></h1>
+			<h2>Because somewhere there's a task you should be doing...eventually</h2>
+		</header>
+
+		<div id="add-tasks">
+			<h2>Add a Task</h2>
+			<form id="addTaskForm">
+				<div class="addTaskLabel">Task Name:</div>
+				<input type="text" id="taskName" />
+				<div class="addTaskLabel">More Information:</div>
+				<textarea id="taskDescription"></textarea>
+				<div class="addTaskLabel">Category:</div>
+				<input type="text" id="taskCategory" />
+				<input type="submit" value="Add Task" id="addTaskButton" />
+			</form>
 		</div>
-	</div>
+
+		<div id="inProgressContainer">
+			<h2>Tasks In Progress</h2>
+			<p id="categoryLinks"></p>
+			<div id="inProgressTasks" class="container">
+				<script id="tasktodo" type="text/x-handlebars-template">
+					<div class="taskContainer">
+						<h3 class="taskName">{{taskName}}</h3>
+						<p class="taskCategory">{{taskCategory}}</p>
+						<p class="taskDescription">{{taskDescription}}</p>
+						<button class="completeTaskButton">Complete Task</button>
+					</div>
+				</script>
+			</div>
+		</div>
 	
-	<div>
-		<h2>Completed Tasks</h2>
-		<div id="completedTasks" class="container">
-			<script id="taskdone" type="text/x-handlebars-template">
-				<div data-id="{{dataID}}" class="taskContainer">
-					<h3 class="completedName">{{completedName}}</h3>
-					<p class="completedCategory">{{completedCategory}}</p>
-					<p class="completedDescription">{{completedDescription}}</p>
-				</div>
-			</script>
+		<div id="completedContainer">
+			<h2>Completed Tasks</h2>
+			<div id="completedTasks" class="container">
+				<script id="taskdone" type="text/x-handlebars-template">
+					<div class="taskContainer">
+						<h3 class="completedName">{{completedName}}</h3>
+						<p class="completedCategory">{{completedCategory}}</p>
+						<p class="completedDescription">{{completedDescription}}</p>
+					</div>
+				</script>
+			</div>
 		</div>
 	</div>
 
