@@ -40,7 +40,7 @@ $(document).ready(function() {
 				// Stores user in Firebase if they're new
 				firebase.onAuth(function(authData) {
 					if (authData) {
-						firebase.child("users").child(authData.uid).set({
+						firebase.child('users').child(authData.uid).set({
 							name: authData.google.displayName
 						});
 					}
@@ -50,6 +50,7 @@ $(document).ready(function() {
 				$loggingIn.hide();
 			}
 		});
+		return uid;
 	})
 
 	// Event Listener for logging out
@@ -97,7 +98,7 @@ $(document).ready(function() {
 			$taskCategory = $('#taskCategory');
 
 		// Create 'task' object in Firebase
-		firebase.child('users').child('name').child('task').push({
+		firebase.child('users').child(uid).child('task').push({
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
