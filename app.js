@@ -18,7 +18,8 @@ $(document).ready(function() {
 		sourceCompleted = $('#taskdone').html(),
 		templateCompleted = Handlebars.compile(sourceCompleted);
 
-	// Hide the logged in vew and check if user is logged in. If yes, hides login screen and shows logged in view
+	// Hide the logged in vew and check if user is logged in.
+	// If yes, hides login screen and shows logged in view
 	$loggedInView.hide();
 	
 	function isAuthenicated() {
@@ -35,7 +36,7 @@ $(document).ready(function() {
 			if (error) {
 				console.log("Login Failed!", error);
 			} else {
-				// console.log("Authenticated successfully with payload:", authData);
+				console.log("Authenticated successfully with payload:", authData);
 
 				// Stores user in Firebase if they're new
 				firebase.onAuth(function(authData) {
@@ -61,28 +62,31 @@ $(document).ready(function() {
 
 	// Sorting tasks and using handlebars to generate html
 	function sortTasks() {
+		$inProgressTasks.empty();
+		$completedTasks.empty();
 		var uid = firebase.getAuth().uid;
 		firebase.child('users').child(uid).child('task').once('value', function(snapshot) {
 			snapshot.forEach(function(childSnapshot) {
 				var childData = childSnapshot.val();
+				console.log(childData);
 
-				if(childData.status == 'In Progress') {
-					var context = {
-						taskName: childData.taskName,
-						taskCategory: childData.taskCategory,
-						taskDescription: childData.taskDescription
-					};
-					var html = template(context);
-					$inProgressTasks.append(html);
-				} else {
-					var context = {
-						completedName: childData.taskName,
-						completedCategory: childData.taskCategory,
-						completedDescription: childData.taskDescription
-					};
-					var html = templateCompleted(context);
-					$completedTasks.append(html);
-				}
+				// if(childData.status == 'In Progress') {
+				// 	var context = {
+				// 		taskName: childData.taskName,
+				// 		taskCategory: childData.taskCategory,
+				// 		taskDescription: childData.taskDescription
+				// 	};
+				// 	var html = template(context);
+				// 	$inProgressTasks.append(html);
+				// } else {
+				// 	var context = {
+				// 		completedName: childData.taskName,
+				// 		completedCategory: childData.taskCategory,
+				// 		completedDescription: childData.taskDescription
+				// 	};
+				// 	var html = templateCompleted(context);
+				// 	$completedTasks.append(html);
+				// }
 			});
 		});
 	}
@@ -115,5 +119,5 @@ $(document).ready(function() {
 	})
 
 	// functions to call when the document is ready
-	// sortTasks();
+	sortTasks();
 }) 
