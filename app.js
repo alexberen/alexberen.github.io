@@ -40,7 +40,7 @@ $(document).ready(function() {
 				// Stores user in Firebase
 
 				firebase.onAuth(function(authData) {
-					if (authData && isNewUser) {
+					if (authData) {
 						firebase.child("users").child(authData.uid).set({
 							name: getName(authData)
 						});
