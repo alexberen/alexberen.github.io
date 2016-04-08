@@ -37,12 +37,11 @@ $(document).ready(function() {
 			} else {
 				console.log("Authenticated successfully with payload:", authData);
 
-				// Stores user in Firebase
-
+				// Stores user in Firebase if they're new
 				firebase.onAuth(function(authData) {
 					if (authData) {
-						firebase.child("users").child(authData.uid).set({
-							name: authData.uid
+						firebase.child("user").child(authData.uid).set({
+							name: authData.google.displayName
 						});
 					}
 				});
