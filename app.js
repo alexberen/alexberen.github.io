@@ -62,7 +62,7 @@ $(document).ready(function() {
 
 	// Sorting tasks and using handlebars to generate html
 	function sortTasks() {
-		firebase.child("users").child(uid).child('task').once('value', function(snapshot) {
+		firebase.child("users").orderByChild('name').child('task').once('value', function(snapshot) {
 			snapshot.forEach(function(childSnapshot) {
 				var childData = childSnapshot.val();
 
@@ -97,7 +97,7 @@ $(document).ready(function() {
 			$taskCategory = $('#taskCategory');
 
 		// Create 'task' object in Firebase
-		firebase.child("users").child(uid).child('task').push({
+		firebase.child("users").orderByChild('name').child('task').push({
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
@@ -114,6 +114,5 @@ $(document).ready(function() {
 	})
 
 	// functions to call when the document is ready
-
 	sortTasks();
 })
