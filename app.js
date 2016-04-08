@@ -58,6 +58,9 @@ $(document).ready(function() {
 			taskDescription: $taskDescription.val(),
 			taskCategory: $taskCategory.val()
 		})
+
+		// sort tasks
+		sortTasks();
 		
 		// clear form fields
 		$taskName.val('');
