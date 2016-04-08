@@ -42,7 +42,7 @@ $(document).ready(function() {
 				firebase.onAuth(function(authData) {
 					if (authData) {
 						firebase.child("users").child(authData.uid).set({
-							name: getName(authData)
+							name: uid
 						});
 					}
 				});
