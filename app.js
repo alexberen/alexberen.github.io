@@ -30,7 +30,7 @@ $(document).ready(function() {
 	isAuthenicated();
 
 	// Event Listener for logging in with Google
-	$logInButton.click(function(e) {
+	$logInButton.on('click', function(e) {
 		firebase.authWithOAuthPopup('google', function(error, authData) {
 			if (error) {
 				console.log("Login Failed!", error);
@@ -40,6 +40,12 @@ $(document).ready(function() {
 				$loggingIn.hide();
 			}
 		});
+	})
+
+	// Event Listener for logging out
+	$logOut.on('click', function(e) {
+		firebase.unauth();
+		console.log('logged out');
 	})
 
 	// Sorting tasks and using handlebars to generate html
