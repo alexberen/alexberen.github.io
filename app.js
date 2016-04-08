@@ -9,6 +9,7 @@ $(document).ready(function() {
 		$loggedInView = $('#loggedInView'),
 		$loggingIn = $('#loggingIn'),
 		$logInButton = $('#logInButton'),
+		$logOut = $('#logOut'),
 		authData = firebase.getAuth();
 
 	// Handlebars variables

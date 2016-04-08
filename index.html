@@ -27,6 +27,7 @@
 			<h2>Because somewhere there's a task you should be doing...eventually</h2>
 		</header>
 
+		<button id="logOut">Log Out</button>
 		<div id="add-tasks">
 			<h2>Add a Task</h2>
 			<form id="addTaskForm">
@@ -47,7 +48,7 @@
 				<script id="tasktodo" type="text/x-handlebars-template">
 					<div class="taskContainer">
 						<h3 class="taskName">{{taskName}}</h3>
-						<p class="taskCategory">{{taskCategory}}</p>
+						<p class="taskCategory">Filed in: {{taskCategory}}</p>
 						<p class="taskDescription">{{taskDescription}}</p>
 						<button class="completeTaskButton">Complete Task</button>
 					</div>
