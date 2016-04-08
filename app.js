@@ -105,7 +105,7 @@ $(document).ready(function() {
 		})
 
 		// sort tasks
-		sortTasks();
+		// sortTasks();
 		
 		// clear form fields
 		$taskName.val('');
