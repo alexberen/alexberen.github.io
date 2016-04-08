@@ -40,12 +40,11 @@ $(document).ready(function() {
 				// Stores user in Firebase if they're new
 				firebase.onAuth(function(authData) {
 					if (authData) {
-						firebase.child("user").child(authData.uid).set({
+						firebase.child("users").child(authData.uid).set({
 							name: authData.google.displayName
 						});
 					}
 				});
-
 
 				$loggedInView.show();
 				$loggingIn.hide();
@@ -63,7 +62,7 @@ $(document).ready(function() {
 
 	// Sorting tasks and using handlebars to generate html
 	function sortTasks() {
-		firebase.child('task').once('value', function(snapshot) {
+		firebase.child("users").child(authData.uid).child('task').once('value', function(snapshot) {
 			snapshot.forEach(function(childSnapshot) {
 				var childData = childSnapshot.val();
 
@@ -98,7 +97,7 @@ $(document).ready(function() {
 			$taskCategory = $('#taskCategory');
 
 		// Create 'task' object in Firebase
-		firebase.child('task').push({
+		firebase.child("users").child(authData.uid).child('task').push({
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
