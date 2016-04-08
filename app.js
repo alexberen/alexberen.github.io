@@ -26,6 +26,7 @@ $(document).ready(function() {
 		if(authData) {
 			$loggedInView.show();
 			$loggingIn.hide();
+			sortTasks();
 		}
 	}
 	isAuthenicated();
@@ -48,6 +49,7 @@ $(document).ready(function() {
 				});
 				$loggedInView.show();
 				$loggingIn.hide();
+				sortTasks();
 			}
 		});
 	})
@@ -117,7 +119,4 @@ $(document).ready(function() {
 		$taskDescription.val('');
 		$taskCategory.val('');
 	})
-
-	// functions to call when the document is ready
-	sortTasks();
 }) 
