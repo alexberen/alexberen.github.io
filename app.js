@@ -46,6 +46,8 @@ $(document).ready(function() {
 	$logOut.on('click', function(e) {
 		firebase.unauth();
 		console.log('logged out');
+		$loggedInView.hide();
+		$loggingIn.show();
 	})
 
 	// Sorting tasks and using handlebars to generate html
