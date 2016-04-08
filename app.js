@@ -36,6 +36,18 @@ $(document).ready(function() {
 				console.log("Login Failed!", error);
 			} else {
 				console.log("Authenticated successfully with payload:", authData);
+
+				// Stores user in Firebase
+
+				firebase.onAuth(function(authData) {
+					if (authData && isNewUser) {
+						firebase.child("users").child(authData.uid).set({
+							name: getName(authData)
+						});
+					}
+				});
+
+
 				$loggedInView.show();
 				$loggingIn.hide();
 			}
