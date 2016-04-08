@@ -45,10 +45,10 @@ $(document).ready(function() {
 						});
 					}
 				});
-				var userid = authData.uid;
 				$loggedInView.show();
 				$loggingIn.hide();
 			}
+			var userid = authData.uid;
 		});
 		return userid;
 	})
