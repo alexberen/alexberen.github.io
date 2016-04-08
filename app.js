@@ -116,4 +116,4 @@ $(document).ready(function() {
 
 	// functions to call when the document is ready
 	// sortTasks();
-})
+}) 
