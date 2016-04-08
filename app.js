@@ -44,10 +44,10 @@ $(document).ready(function() {
 
 	// Event Listener for logging out
 	$logOut.on('click', function(e) {
-		firebase.unauth();
-		console.log('logged out');
 		$loggedInView.hide();
 		$loggingIn.show();
+		firebase.unauth();
+		console.log('logged out');
 	})
 
 	// Sorting tasks and using handlebars to generate html
