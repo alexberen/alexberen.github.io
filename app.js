@@ -45,12 +45,12 @@ $(document).ready(function() {
 						});
 					}
 				});
-
+				var userid = authData.uid;
 				$loggedInView.show();
 				$loggingIn.hide();
 			}
 		});
-		return authData.uid;
+		return userid;
 	})
 
 	// Event Listener for logging out
@@ -98,7 +98,7 @@ $(document).ready(function() {
 			$taskCategory = $('#taskCategory');
 
 		// Create 'task' object in Firebase
-		firebase.child('users').child(authData.uid).child('task').push({
+		firebase.child('users').child(userid).child('task').push({
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
