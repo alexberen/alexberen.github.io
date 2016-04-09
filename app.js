@@ -13,6 +13,8 @@ $(document).ready(function() {
 		$logOut = $('#logOut'),
 		$showCompletedChevron = $('#showCompletedChevron'),
 		$createNewTask = $('#createNewTask'),
+		$addTaskFormModal = $('#addTaskFormModal'),
+		$formContent = $addTaskFormModal.detach(),
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -167,15 +169,15 @@ $(document).ready(function() {
 	}());
 
 	// Initializing Modal for adding new tasks
-	(function() {
-		var $content = $('#addTaskFormModal').detach();
+	// (function() {
+		// var $content = $('#addTaskFormModal').detach();
 
 		$('#createNewTask').on('click', function(e) {
 			modal.open({
-				content: $content
+				content: $formContent
 			});
 		});
-	}());
+	// }());
 	
 	// Creating tasks
 	$addTaskForm.submit(function(e) {
@@ -243,7 +245,7 @@ $(document).ready(function() {
 			sortTasks();
 		}
 	})
-	
+
 	$inProgressTasks.on('click', 'a', function(e) {
 		var confirmDelete = confirm('Are you sure  you want to delete this task? This can\'t be undone and the task will be gone forever.');
 		if(confirmDelete == true) {
