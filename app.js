@@ -121,7 +121,7 @@ $(document).ready(function() {
 		});
 		console.log('New task added: ', newTaskRef);
 		var taskID = newTaskRef.key();
-		newTaskRef = taskRef.update({
+		newTaskRef.update({
 			taskID = taskID
 		});
 		console.log('New task updated: ', newTaskRef);
