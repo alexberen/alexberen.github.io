@@ -44,8 +44,9 @@ $(document).ready(function() {
 				console.log("Authenticated successfully with payload:", authData);
 
 				// Stores user in Firebase if they're new
+				var uid = firebase.getAuth().uid;
 				firebase.onAuth(function(authData) {
-					if (authData == null) {
+					if (authData.name == null) {
 						firebase.child('users').child(authData.uid).set({
 							name: authData.google.displayName,
 							email: authData.google.email
