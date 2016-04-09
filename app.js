@@ -47,9 +47,11 @@ $(document).ready(function() {
 						});
 					}
 				});
+				var uid = firebase.getAuth().uid;
 				$loggedInView.show();
 				$loggingIn.hide();
 				// sortTasks();
+				return uid;
 			}
 		});
 	})
@@ -72,7 +74,7 @@ $(document).ready(function() {
 		firebase.child('users').child(uid).child('task').on('child_changed', function(snapshot) {
 			$inProgressTasks.empty();
 
-			var uid = firebase.getAuth().uid;
+			// var uid = firebase.getAuth().uid;
 
 			snapshot.forEach(function(childSnapshot) {
 				var childData = childSnapshot.val();
@@ -106,8 +108,8 @@ $(document).ready(function() {
 		// Variables in this function's scope
 		var $taskName = $('#taskName'),
 			$taskDescription = $('#taskDescription');
-			$taskCategory = $('#taskCategory'),
-			uid = firebase.getAuth().uid;
+			$taskCategory = $('#taskCategory');
+			// uid = firebase.getAuth().uid;
 
 		// Create 'task' object in Firebase
 		firebase.child('users').child(uid).child('task').push({
