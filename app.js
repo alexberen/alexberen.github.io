@@ -117,7 +117,9 @@ $(document).ready(function() {
 			taskDescription: $taskDescription.val(),
 			taskCategory: $taskCategory.val(),
 		})
-		console.log(taskRef.key());
+		var newTaskRef = taskRef.push();
+		var taskID = taskRef.key();
+		console.log(taskID);
 
 		// sort tasks
 		sortTasks();
