@@ -235,11 +235,11 @@ $(document).ready(function() {
 
 	//Event listeners for deleting tasks
 	$completedTasks.on('click', 'a', function(e) {
+		console.log(this);
+		
 		modal.open({
 			content: $deleteConfirmationContent
 		})
-
-		console.log(this);
 	});
 
 	$('#deleteTask').click(function(e) {
