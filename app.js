@@ -111,13 +111,12 @@ $(document).ready(function() {
 			taskRef = firebase.child('users').child(uid).child('task');
 
 		// Create 'task' object in Firebase
-		taskRef.push({
+		var newTaskRef = taskRef.push({
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
 			taskCategory: $taskCategory.val(),
 		})
-		var newTaskRef = taskRef.push();
 		var taskID = taskRef.key();
 		console.log(taskID);
 
