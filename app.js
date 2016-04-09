@@ -292,7 +292,7 @@ $(document).ready(function() {
 			userRef = firebase.child('users').child(uid);
 		if(e.which == 13) {
 			userRef.update({
-				name: $('#newUserName').val();
+				name: $('#newUserName').val()
 			})
 			$userName.text($('#newUserName').val());
 			modal.close();
