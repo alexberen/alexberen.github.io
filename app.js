@@ -233,7 +233,7 @@ $(document).ready(function() {
 	})
 
 	//Event listeners for deleting tasks
-	ul.on('click', 'li a', function(e) {
+	$completedTasks.on('click', 'a', function(e) {
 		var confirmDelete = confirm('Are you sure  you want to delete this task? This can\'t be undone and the task will be gone forever.');
 		if(confirmDelete == true) {
 			var uid = firebase.getAuth().uid,
@@ -244,16 +244,16 @@ $(document).ready(function() {
 		}
 	})
 
-	// $inProgressTasks.on('click', 'a', function(e) {
-	// 	var confirmDelete = confirm('Are you sure  you want to delete this task? This can\'t be undone and the task will be gone forever.');
-	// 	if(confirmDelete == true) {
-	// 		var uid = firebase.getAuth().uid,
-	// 			thisTaskID = $(this).data('deletion'),
-	// 			thisTaskRef = firebase.child('users').child(uid).child('task');
-	// 		thisTaskRef.child(thisTaskID).remove();
-	// 		sortTasks();
-	// 	}
-	// })	
+	$inProgressTasks.on('click', 'a', function(e) {
+		var confirmDelete = confirm('Are you sure  you want to delete this task? This can\'t be undone and the task will be gone forever.');
+		if(confirmDelete == true) {
+			var uid = firebase.getAuth().uid,
+				thisTaskID = $(this).data('deletion'),
+				thisTaskRef = firebase.child('users').child(uid).child('task');
+			thisTaskRef.child(thisTaskID).remove();
+			sortTasks();
+		}
+	})	
 
 	// Initializing modal for confirming deletion
 	// $('#createNewTask').on('click', function(e) {
