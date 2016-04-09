@@ -132,7 +132,7 @@ $(document).ready(function() {
 		$taskCategory.val('').blur();
 	})
 
-	$('button').on('click' function(e) {
+	$('button').on('click', function(e) {
 		console.log('You clicked a button:');
 		firebase.child('users').child(uid).child('task').once('value', function(snapshot) {
 			var data = snapshot.val();
