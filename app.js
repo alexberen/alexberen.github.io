@@ -168,7 +168,7 @@ $(document).ready(function() {
 
 	// Initializing Modal for adding new tasks
 	(function() {
-		var $content = $('#addTaskForm').detach();
+		var $content = $('#addTaskFormModal').detach();
 
 		$('#createNewTask').on('click', function(e) {
 			modal.open({
