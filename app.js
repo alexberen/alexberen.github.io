@@ -116,9 +116,15 @@ $(document).ready(function() {
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
-			taskCategory: $taskCategory.val(),
-			taskID: newTaskRef.key()
+			taskCategory: $taskCategory.val()
+			// taskID: newTaskRef.key()
 		});
+		console.log('New task added: ', newTaskRef);
+		var taskID = newTaskRef.key();
+		newTaskRef = taskRef.update({
+			taskID = taskID
+		});
+		console.log('New task updated: ', newTaskRef);
 
 		// sort tasks
 		sortTasks();
