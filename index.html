@@ -44,16 +44,16 @@
 		<div id="inProgressContainer">
 			<h2>Tasks In Progress</h2>
 			<p id="categoryLinks"></p>
-			<div id="inProgressTasks" class="container">
+			<ul id="inProgressTasks">
 				<script id="tasktodo" type="text/x-handlebars-template">
-					<div class="taskContainer">
+					<li>
 						<h3 class="taskName">{{taskName}}</h3>
 						<p class="taskCategory">Filed in: {{taskCategory}}</p>
 						<p class="taskDescription">{{taskDescription}}</p>
 						<button data-id="{{taskID}}">Complete Task</button>
-					</div>
+					</li>
 				</script>
-			</div>
+			</ul>
 		</div>
 	
 		<div id="completedContainer">
