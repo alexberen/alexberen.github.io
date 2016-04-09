@@ -126,8 +126,8 @@ $(document).ready(function() {
 	// Modal Test for making new Tasks
 	var modal = function() {
 		var $window = $(window),
-			$modal = $('<div class="modal" />'),
-			$content = $('div class="modal-content" />'),
+			$modal = $('<div class="modal"></div>'),
+			$content = $('div class="modal-content"></div>'),
 			$close = $('<button role="button" class="modal-close">X</button>');
 
 		$modal.append($content, $close);
