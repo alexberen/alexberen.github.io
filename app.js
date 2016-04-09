@@ -113,19 +113,29 @@ $(document).ready(function() {
 	$showCompletedChevron.on('click', function(e) {
 		if($showCompletedChevron.hasClass('fa-rotate-90')) {
 			$showCompletedChevron.toggleClass('fa-rotate-90');
+
+			firebase.child('users').child(uid).child('task').on('value', function(snapshot) {
+				snapshot.forEach(function(childSnapshot) {
+					var childData = childSnapshot.val();
+					if(childData.status == 'completed') {
+						var context = {
+								completedName: childData.taskName,
+								completedCategory: childData.taskCategory,
+								completedDescription: childData.taskDescription,
+								taskID: childData.taskID
+							};
+							var html = templateCompleted(context);
+							$completedTasks.append(html);	
+					}
+				}
+			}
 			$completedTasks.show();
-			var context = {
-						completedName: childData.taskName,
-						completedCategory: childData.taskCategory,
-						completedDescription: childData.taskDescription,
-						taskID: childData.taskID
-					};
-					var html = templateCompleted(context);
-					$completedTasks.append(html);
+							
 		} else {
 			$showCompletedChevron.toggleClass('fa-rotate-90');
 			$completedTasks.hide();
 		}
+
 	})
 	
 	// Creating tasks
