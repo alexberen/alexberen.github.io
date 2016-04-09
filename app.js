@@ -35,8 +35,8 @@ $(document).ready(function() {
 
 	// Event Listener for logging in with Google
 	$logInButton.on('click', function(e) {
-		var uid = firebase.getAuth().uid;
 		firebase.authWithOAuthPopup('google', function(error, authData) {
+		var uid = firebase.getAuth().uid;
 			if (error) {
 				console.log("Login Failed!", error);
 			} else {
