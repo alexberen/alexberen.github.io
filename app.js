@@ -108,10 +108,10 @@ $(document).ready(function() {
 			$taskDescription = $('#taskDescription');
 			$taskCategory = $('#taskCategory'),
 			uid = firebase.getAuth().uid,
-			taskRef = firebase.child('users').child(uid).child('task');
+			taskRef = firebase.child('users').child(uid);
 
 		// Create 'task' object in Firebase
-		taskRef.push({
+		taskRef.child('task').push({
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
