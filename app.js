@@ -17,7 +17,6 @@ $(document).ready(function() {
 		$formContent = $addTaskFormModal.detach(),
 		$deleteTaskConfirmationModal = $('#deleteTaskConfirmationModal'),
 		$deleteConfirmationContent = $deleteTaskConfirmationModal.detach(),
-		confirmDelete = false,
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -234,6 +233,8 @@ $(document).ready(function() {
 
 	//Event listeners for deleting tasks
 	$completedTasks.on('click', 'a', function(e) {
+		e.preventDefault();
+
 		modal.open({
 			content: $deleteConfirmationContent
 		})
@@ -241,16 +242,17 @@ $(document).ready(function() {
 		return this;
 	});
 
-	$('#deleteTask').click(function(e) {
-		confirmDelete = true;
+	$('#deleteTask').on('click', function(e) {
+		var uid = firebase.getAuth().uid,
+			thisTaskID = $(this).data('deletion'),
+			thisTaskRef = firebase.child('users').child(uid).child('task');
+		thisTaskRef.child(thisTaskID).remove();
+		modal.close();
+		sortTasks();
+	})
 
-		if(confirmDelete == true) {
-			var uid = firebase.getAuth().uid,
-				thisTaskID = $(this).data('deletion'),
-				thisTaskRef = firebase.child('users').child(uid).child('task');
-			thisTaskRef.child(thisTaskID).remove();
-			sortTasks();
-		}
+	$('#keepTask').on('click', function(e) {
+		modal.close();
 	})
 		
 
