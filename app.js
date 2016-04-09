@@ -35,13 +35,11 @@ $(document).ready(function() {
 
 	// Event Listener for logging in with Google
 	$logInButton.on('click', function(e) {
-		firebase.authWithOAuthPopup('google', function(error, authData) {
-			if (error) {
-				console.log("Login Failed!", error);
-			} else {
-				// console.log("Authenticated successfully with payload:", authData);
 
-				// Stores user in Firebase if they're new
+		firebase.authWithOAuthRedirect('google', function(error) {
+			if(error) {
+				console.log("Authentication failed!", error);
+			} else {
 				firebase.onAuth(function(authData) {
 					if (authData == null) {
 						firebase.child('users').child(authData.uid).set({
@@ -55,7 +53,29 @@ $(document).ready(function() {
 				$loggingIn.hide();
 				sortTasks();
 			}
-		});
+		})
+
+		// firebase.authWithOAuthPopup('google', function(error, authData) {
+		// 	if (error) {
+		// 		console.log("Login Failed!", error);
+		// 	} else {
+		// 		// console.log("Authenticated successfully with payload:", authData);
+
+		// 		// Stores user in Firebase if they're new
+		// 		firebase.onAuth(function(authData) {
+		// 			if (authData == null) {
+		// 				firebase.child('users').child(authData.uid).set({
+		// 					name: authData.google.displayName,
+		// 					email: authData.google.email
+		// 				});
+		// 			}
+		// 		});
+		// 		$loggedInView.show();
+		// 		$userName.text(authData.google.displayName);
+		// 		$loggingIn.hide();
+		// 		sortTasks();
+		// 	}
+		// });
 	})
 
 	// Event Listener for logging out
@@ -65,7 +85,6 @@ $(document).ready(function() {
 		$inProgressTasks.empty();
 		$completedTasks.empty();
 		firebase.unauth();
-		// $logInButton.after('<p>You\'ve successfully logged out of TasksToDo</p>');
 	})
 
 	// Sorting tasks and using handlebars to generate html
