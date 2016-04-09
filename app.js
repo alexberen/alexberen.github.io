@@ -139,7 +139,8 @@ $(document).ready(function() {
 	// Event listener for completing tasks
 	$inProgressTasks.on('click', 'button', function(e) {
 		console.log('You clicked da button', this);
-		var thisTaskID = $(this).data('id'),
+		var uid = firebase.getAuth().uid,
+			thisTaskID = $(this).data('id'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 		thisTaskRef.child(thisTaskID).update({
 			status: "Complete"
