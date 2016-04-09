@@ -153,8 +153,8 @@ $(document).ready(function() {
 				});
 			},
 			open: function(settings) {
-				$content.empty().append(settings.content);
-
+				$content.append(settings.content);
+				// .empty()
 				$modal.css({
 					width: settings.width || 'auto',
 					height: settings.height || 'auto'
@@ -235,11 +235,11 @@ $(document).ready(function() {
 
 	//Event listeners for deleting tasks
 	$completedTasks.on('click', 'a', function(e) {
-		console.log(this);
-		
 		modal.open({
 			content: $deleteConfirmationContent
 		})
+
+		return this;
 	});
 
 	$('#deleteTask').click(function(e) {
