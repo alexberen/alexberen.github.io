@@ -203,10 +203,11 @@ $(document).ready(function() {
 		// sort tasks
 		sortTasks();
 		
-		// clear form fields
+		// clear form fields and close modal
 		$taskName.val('').blur();
 		$taskDescription.val('');
 		$taskCategory.val('').blur();
+		modal.close();
 	})
 
 	// Event listener for completing tasks

@@ -16,6 +16,10 @@ li {
 	display: block;
 }
 
+#addTaskFormModal {
+	background: pink;
+}
+
 #addTaskForm {
 	background: lime;
 }
