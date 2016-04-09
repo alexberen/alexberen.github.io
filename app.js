@@ -144,7 +144,7 @@ $(document).ready(function() {
 		thisTaskRef.child(thisTaskID).update({
 			status: 'Complete'
 		})
-		// sortTasks();
+		sortTasks();
 	})
 
 	// Event listener for seting completed tasks back to in progress
@@ -156,7 +156,7 @@ $(document).ready(function() {
 		thisTaskRef.child(thisTaskID).update({
 			status: 'In Progress'
 		})
-		// sortTasks();
+		sortTasks();
 	})
 
 
