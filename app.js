@@ -15,6 +15,8 @@ $(document).ready(function() {
 		$createNewTask = $('#createNewTask'),
 		$addTaskFormModal = $('#addTaskFormModal'),
 		$formContent = $addTaskFormModal.detach(),
+		$deleteTaskConfirmationModal = $('#deleteTaskConfirmationModal'),
+		$deleteConfirmationContent = $deleteTaskConfirmationModal.detach(),
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -125,7 +127,7 @@ $(document).ready(function() {
 
 	})
 
-	// Modal Test for making new Tasks
+	// Modal Setup
 	var modal = (function() {
 		var $window = $(window),
 			$modal = $('<div class="modal"></div>'),
@@ -169,15 +171,11 @@ $(document).ready(function() {
 	}());
 
 	// Initializing Modal for adding new tasks
-	// (function() {
-		// var $content = $('#addTaskFormModal').detach();
-
-		$('#createNewTask').on('click', function(e) {
-			modal.open({
-				content: $formContent
-			});
+	$('#createNewTask').on('click', function(e) {
+		modal.open({
+			content: $formContent
 		});
-	// }());
+	});
 	
 	// Creating tasks
 	$addTaskForm.submit(function(e) {
@@ -235,7 +233,7 @@ $(document).ready(function() {
 	})
 
 	//Event listeners for deleting tasks
-	$completedTasks.on('click', 'a', function(e) {
+	ul.on('click', 'a', function(e) {
 		var confirmDelete = confirm('Are you sure  you want to delete this task? This can\'t be undone and the task will be gone forever.');
 		if(confirmDelete == true) {
 			var uid = firebase.getAuth().uid,
@@ -246,19 +244,23 @@ $(document).ready(function() {
 		}
 	})
 
-	$inProgressTasks.on('click', 'a', function(e) {
-		var confirmDelete = confirm('Are you sure  you want to delete this task? This can\'t be undone and the task will be gone forever.');
-		if(confirmDelete == true) {
-			var uid = firebase.getAuth().uid,
-				thisTaskID = $(this).data('deletion'),
-				thisTaskRef = firebase.child('users').child(uid).child('task');
-			thisTaskRef.child(thisTaskID).remove();
-			sortTasks();
-		}
-	})	
+	// $inProgressTasks.on('click', 'a', function(e) {
+	// 	var confirmDelete = confirm('Are you sure  you want to delete this task? This can\'t be undone and the task will be gone forever.');
+	// 	if(confirmDelete == true) {
+	// 		var uid = firebase.getAuth().uid,
+	// 			thisTaskID = $(this).data('deletion'),
+	// 			thisTaskRef = firebase.child('users').child(uid).child('task');
+	// 		thisTaskRef.child(thisTaskID).remove();
+	// 		sortTasks();
+	// 	}
+	// })	
 
-
-
+	// Initializing modal for confirming deletion
+	// $('#createNewTask').on('click', function(e) {
+	// 	modal.open({
+	// 		content: $formContent
+	// 	});
+	// });
 
 
 
