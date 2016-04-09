@@ -239,8 +239,8 @@ $(document).ready(function() {
 			content: $deleteConfirmationContent
 		})
 
-		// return this;
-	})
+		console.log(this);
+	});
 
 	$('#deleteTask').click(function(e) {
 		confirmDelete = true;
