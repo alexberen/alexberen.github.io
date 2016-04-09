@@ -61,6 +61,8 @@ $(document).ready(function() {
 	$logOut.on('click', function(e) {
 		$loggedInView.hide();
 		$loggingIn.show();
+		$inProgressTasks.empty();
+		$completedTasks.empty();
 		firebase.unauth();
 		// console.log('logged out');
 	})
@@ -115,7 +117,7 @@ $(document).ready(function() {
 			taskDescription: $taskDescription.val(),
 			taskCategory: $taskCategory.val()
 		})
-		console.log('new task ', this);
+		console.log('new task ', this, firebase.child('users').child(uid).child('task').key());
 
 		// sort tasks
 		sortTasks();
