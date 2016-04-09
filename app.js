@@ -117,7 +117,7 @@ $(document).ready(function() {
 			taskDescription: $taskDescription.val(),
 			taskCategory: $taskCategory.val()
 		})
-		console.log('new task ', this, firebase.child('users').child(uid).child('task').key());
+		console.log('new task ', this, firebase.child('users').child(uid).child('task').key().child());
 
 		// sort tasks
 		sortTasks();
