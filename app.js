@@ -144,7 +144,7 @@ $(document).ready(function() {
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 		thisTaskRef.child(thisTaskID).update({
 			status: 'Complete'
-		})
+		});
 		sortTasks();
 	})
 
@@ -155,9 +155,21 @@ $(document).ready(function() {
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 		thisTaskRef.child(thisTaskID).update({
 			status: 'In Progress'
-		})
+		});
 		sortTasks();
 	})
+
+	//Event listener for deleting tasks
+	$completedTasks.on('click', 'a', function(e) {
+		var confirmDelete = prompt('Are you sure  you want to delete this task? This can\'t be undone and the task will be gone forever.');
+		if(confirmDelete == true) {
+			var uid = firebase.getAuth().uid,
+				thisTaskID = $(this).data('deletion'),
+				thisTaskRef = firebase.child('users').child(uid).child('task');
+			thisTaskRef.child(thisTaskID).remove();
+			sortTasks();
+		}
+	})	
 
 
 
