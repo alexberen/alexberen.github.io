@@ -239,22 +239,23 @@ $(document).ready(function() {
 			content: $deleteConfirmationContent
 		})
 
-		return this;
+		console.log('Modal open');
+
+		$('#deleteTask').on('click', function(e) {
+			console.log('You clicked delete task');
+			var uid = firebase.getAuth().uid,
+				thisTaskID = $(this).data('deletion'),
+				thisTaskRef = firebase.child('users').child(uid).child('task');
+			thisTaskRef.child(thisTaskID).remove();
+			modal.close();
+			sortTasks();
+		})
+
+		$('#keepTask').on('click', function(e) {
+			console.log('You clicked keep task');
+			modal.close();
+		})
 	});
-
-	$('#deleteTask').on('click', function(e) {
-		var uid = firebase.getAuth().uid,
-			thisTaskID = $(this).data('deletion'),
-			thisTaskRef = firebase.child('users').child(uid).child('task');
-		thisTaskRef.child(thisTaskID).remove();
-		modal.close();
-		sortTasks();
-	})
-
-	$('#keepTask').on('click', function(e) {
-		modal.close();
-	})
-		
 
 	$inProgressTasks.on('click', 'a', function(e) {
 		var confirmDelete = confirm('Are you sure  you want to delete this task? This can\'t be undone and the task will be gone forever.');
