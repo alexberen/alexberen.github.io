@@ -156,7 +156,7 @@ $(document).ready(function() {
 				}).appendTo('body');
 
 				modal.center();
-				$(window).on('resize', modla.center);
+				$(window).on('resize', modal.center);
 			},
 			close: function() {
 				$content.empty();
