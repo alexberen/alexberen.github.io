@@ -128,7 +128,7 @@ $(document).ready(function() {
 							$completedTasks.append(html);	
 					}
 				})
-			}
+			})
 			$completedTasks.show();
 							
 		} else {
