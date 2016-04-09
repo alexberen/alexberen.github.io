@@ -4,6 +4,7 @@ $(document).ready(function() {
 
 	// Caching global variables
 	var $addTaskForm = $('#addTaskForm'),
+		$userName = $('#userName'),
 		$inProgressTasks = $('#inProgressTasks'),
 		$completedTasks = $('#completedTasks'),
 		$loggedInView = $('#loggedInView'),
@@ -25,6 +26,7 @@ $(document).ready(function() {
 	function isAuthenicated() {
 		if(authData) {
 			$loggedInView.show();
+			$userName.val(authData.name);
 			$loggingIn.hide();
 			sortTasks();
 		}
@@ -48,6 +50,7 @@ $(document).ready(function() {
 					}
 				});
 				$loggedInView.show();
+				$userName.val(authData.name);
 				$loggingIn.hide();
 				sortTasks();
 			}
@@ -69,7 +72,7 @@ $(document).ready(function() {
 
 		var uid = firebase.getAuth().uid;
 
-		firebase.child('users').child(uid).child('task').on('child_changed', function(snapshot) {
+		firebase.child('users').child(uid).child('task').on('value', function(snapshot) {
 			snapshot.forEach(function(childSnapshot) {
 				var childData = childSnapshot.val();
 
