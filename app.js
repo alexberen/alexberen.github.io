@@ -240,12 +240,12 @@ $(document).ready(function() {
 		})
 
 		console.log(this);
+		var uid = firebase.getAuth().uid,
+			thisTaskID = $(this).data('deletion'),
+			thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		$('#deleteTask').on('click', function(e) {
 			console.log(this);
-			var uid = firebase.getAuth().uid,
-				thisTaskID = $(this).data('deletion'),
-				thisTaskRef = firebase.child('users').child(uid).child('task');
 			thisTaskRef.child(thisTaskID).remove();
 			modal.close();
 			sortTasks();
