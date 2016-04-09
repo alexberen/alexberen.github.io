@@ -120,8 +120,8 @@ $(document).ready(function() {
 		sortTasks();
 		
 		// clear form fields
-		$taskName.val('');
-		$taskDescription.val('');
+		$taskName.val('').blur();
+		$taskDescription.val('').blur();
 		$taskCategory.val('').blur();
 	})
 })
