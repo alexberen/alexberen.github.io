@@ -94,43 +94,25 @@ $(document).ready(function() {
 					};
 					var html = template(context);
 					$inProgressTasks.append(html);
+				} else {
+					var context = {
+						completedName: childData.taskName,
+						completedCategory: childData.taskCategory,
+						completedDescription: childData.taskDescription,
+						taskID: childData.taskID
+					};
+					var html = templateCompleted(context);
+					$completedTasks.append(html);
 				}
-				// else {
-				// 	var context = {
-				// 		completedName: childData.taskName,
-				// 		completedCategory: childData.taskCategory,
-				// 		completedDescription: childData.taskDescription,
-				// 		taskID: childData.taskID
-				// 	};
-				// 	var html = templateCompleted(context);
-				// 	$completedTasks.append(html);
-				// }
 			});
 		});
 	}
 
 	// Event listener for showing/hiding completed tasks
 	$showCompletedChevron.on('click', function(e) {
-		var uid = firebase.getAuth().uid;
-		
+
 		if($showCompletedChevron.hasClass('fa-rotate-90')) {
 			$showCompletedChevron.toggleClass('fa-rotate-90');
-
-			firebase.child('users').child(uid).child('task').on('value', function(snapshot) {
-				snapshot.forEach(function(childSnapshot) {
-					var childData = childSnapshot.val();
-					if(childData.status == 'completed') {
-						var context = {
-								completedName: childData.taskName,
-								completedCategory: childData.taskCategory,
-								completedDescription: childData.taskDescription,
-								taskID: childData.taskID
-							};
-							var html = templateCompleted(context);
-							$completedTasks.append(html);	
-					}
-				})
-			})
 			$completedTasks.show();
 							
 		} else {
