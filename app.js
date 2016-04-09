@@ -108,16 +108,16 @@ $(document).ready(function() {
 			$taskDescription = $('#taskDescription');
 			$taskCategory = $('#taskCategory'),
 			uid = firebase.getAuth().uid,
-			taskRef = firebase.child('users').child(uid);
+			taskRef = firebase.child('users').child(uid).child('task');
 
 		// Create 'task' object in Firebase
-		taskRef.child('task').push({
+		taskRef.push({
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
 			taskCategory: $taskCategory.val(),
-			taskID: taskRef.key()
 		})
+		console.log(taskRef.key());
 
 		// sort tasks
 		sortTasks();
