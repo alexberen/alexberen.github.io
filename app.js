@@ -239,10 +239,8 @@ $(document).ready(function() {
 			content: $deleteConfirmationContent
 		})
 
-		console.log('Modal open');
-
 		$('#deleteTask').on('click', function(e) {
-			console.log('You clicked delete task');
+			console.log(this);
 			var uid = firebase.getAuth().uid,
 				thisTaskID = $(this).data('deletion'),
 				thisTaskRef = firebase.child('users').child(uid).child('task');
@@ -252,7 +250,6 @@ $(document).ready(function() {
 		})
 
 		$('#keepTask').on('click', function(e) {
-			console.log('You clicked keep task');
 			modal.close();
 		})
 	});
