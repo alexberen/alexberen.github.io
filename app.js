@@ -65,6 +65,7 @@ $(document).ready(function() {
 		$inProgressTasks.empty();
 		$completedTasks.empty();
 		firebase.unauth();
+		$logInButton.append('<p>You\'ve successfully logged out of TasksToDo</p>');
 	})
 
 	// Sorting tasks and using handlebars to generate html
