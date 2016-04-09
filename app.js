@@ -11,6 +11,7 @@ $(document).ready(function() {
 		$loggingIn = $('#loggingIn'),
 		$logInButton = $('#logInButton'),
 		$logOut = $('#logOut'),
+		$showCompletedChevron = $('#showCompletedChevron'),
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -22,6 +23,7 @@ $(document).ready(function() {
 	// Hide the logged in vew and check if user is logged in.
 	// If yes, hides login screen and shows logged in view
 	$loggedInView.hide();
+	$completedTasks.hide();
 	
 	function isAuthenicated() {
 		if(authData) {
@@ -92,8 +94,27 @@ $(document).ready(function() {
 					};
 					var html = template(context);
 					$inProgressTasks.append(html);
-				} else {
-					var context = {
+				}
+				// else {
+				// 	var context = {
+				// 		completedName: childData.taskName,
+				// 		completedCategory: childData.taskCategory,
+				// 		completedDescription: childData.taskDescription,
+				// 		taskID: childData.taskID
+				// 	};
+				// 	var html = templateCompleted(context);
+				// 	$completedTasks.append(html);
+				// }
+			});
+		});
+	}
+
+	// Event listener for showing/hiding completed tasks
+	$showCompletedChevron.on('click', function(e) {
+		if($showCompletedChevron.hasClass('fa-rotate-90')) {
+			$showCompletedChevron.toggleClass('fa-rotate-90');
+			$completedTasks.show();
+			var context = {
 						completedName: childData.taskName,
 						completedCategory: childData.taskCategory,
 						completedDescription: childData.taskDescription,
@@ -101,10 +122,11 @@ $(document).ready(function() {
 					};
 					var html = templateCompleted(context);
 					$completedTasks.append(html);
-				}
-			});
-		});
-	}
+		} else {
+			$showCompletedChevron.toggleClass('fa-rotate-90');
+			$completedTasks.hide();
+		}
+	})
 	
 	// Creating tasks
 	$addTaskForm.submit(function(e) {
