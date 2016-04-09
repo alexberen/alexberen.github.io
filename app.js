@@ -130,8 +130,8 @@ $(document).ready(function() {
 			$modal = $('<div class="modal"></div>'),
 			$content = $('<div class="modal-content"></div>'),
 			// $close = $('<button role="button" class="modal-close">X</button>');
-
-		$modal.append($content, $close);
+			// , $close
+		$modal.append($content);
 
 		$close.on('click', function(e) {
 			e.preventDefault();
