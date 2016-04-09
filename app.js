@@ -41,7 +41,7 @@ $(document).ready(function() {
 			if (error) {
 				console.log("Login Failed!", error);
 			} else {
-				console.log("Authenticated successfully with payload:", authData);
+				// console.log("Authenticated successfully with payload:", authData);
 
 				// Stores user in Firebase if they're new
 				var uid = firebase.getAuth().uid;
