@@ -39,7 +39,7 @@ $(document).ready(function() {
 			if (error) {
 				console.log("Login Failed!", error);
 			} else {
-				console.log("Authenticated successfully with payload:", authData);
+				// console.log("Authenticated successfully with payload:", authData);
 
 				// Stores user in Firebase if they're new
 				firebase.onAuth(function(authData) {
@@ -84,7 +84,6 @@ $(document).ready(function() {
 						taskCategory: childData.taskCategory,
 						taskDescription: childData.taskDescription
 					};
-					console.log(childData);
 					var html = template(context);
 					$inProgressTasks.append(html);
 				} else {
@@ -96,14 +95,6 @@ $(document).ready(function() {
 					var html = templateCompleted(context);
 					$completedTasks.append(html);
 				}
-				$('button').on('click', function(e) {
-					console.log('You clicked a button:');
-					firebase.child('users').child(uid).child('task').once('value', function(snapshot) {
-						var data = snapshot.val();
-						console.log(data);
-						console.log($(this).data);
-					})
-				})
 			});
 		});
 	}
@@ -116,19 +107,16 @@ $(document).ready(function() {
 		var $taskName = $('#taskName'),
 			$taskDescription = $('#taskDescription');
 			$taskCategory = $('#taskCategory'),
-			uid = firebase.getAuth().uid;
+			uid = firebase.getAuth().uid,
+			taskRef = firebase.child('users').child(uid).child('task');
 
 		// Create 'task' object in Firebase
-		firebase.child('users').child(uid).child('task').push({
+		taskRef.push({
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
-			taskCategory: $taskCategory.val()
-		})
-		console.log('New task:');
-		firebase.child('users').child(uid).child('task').once('value', function(snapshot) {
-			var data = snapshot.val();
-			console.log(data);
+			taskCategory: $taskCategory.val(),
+			taskID: taskRef.key()
 		})
 
 		// sort tasks
