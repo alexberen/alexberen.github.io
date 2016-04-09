@@ -150,7 +150,7 @@ $(document).ready(function() {
 	// Event listener for seting completed tasks back to in progress
 	$completedTasks.on('click', 'button', function(e) {
 		var uid = firebase.getAuth().uid,
-			thisTaskID = $(this).data('id'),
+			thisTaskID = $(this).data('completion'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 		thisTaskRef.child(thisTaskID).update({
 			status: 'In Progress'
