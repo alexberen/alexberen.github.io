@@ -111,6 +111,8 @@ $(document).ready(function() {
 
 	// Event listener for showing/hiding completed tasks
 	$showCompletedChevron.on('click', function(e) {
+		var uid = firebase.getAuth().uid;
+		
 		if($showCompletedChevron.hasClass('fa-rotate-90')) {
 			$showCompletedChevron.toggleClass('fa-rotate-90');
 
