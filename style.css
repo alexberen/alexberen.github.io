@@ -11,3 +11,7 @@ li {
 	position: absolute;
 	z-index: 1000;
 }
+
+#logOut {
+	display: block;
+}
