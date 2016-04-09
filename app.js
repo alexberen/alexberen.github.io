@@ -43,7 +43,6 @@ $(document).ready(function() {
 
 				// Stores user in Firebase if they're new
 				firebase.onAuth(function(authData) {
-					var uid = firebase.getAuth().uid;
 					if (authData == null) {
 						firebase.child('users').child(authData.uid).set({
 							name: authData.google.displayName,
