@@ -49,7 +49,7 @@ $(document).ready(function() {
 					if (authData.name == null) {
 						firebase.child('users').child(authData.uid).set({
 							name: authData.google.displayName,
-							email: authData.google.email
+							// email: authData.google.email
 						});
 					}
 				});
