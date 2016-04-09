@@ -153,8 +153,7 @@ $(document).ready(function() {
 				});
 			},
 			open: function(settings) {
-				$content.append(settings.content);
-				// .empty()
+				$content.empty().append(settings.content);
 				$modal.css({
 					width: settings.width || 'auto',
 					height: settings.height || 'auto'
