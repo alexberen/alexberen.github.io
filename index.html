@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TaskToDo</title>
+	<title><span id="userName"></span>'s TasksToDoTaskToDo</title>
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -78,6 +78,11 @@
 		<div id="deleteTaskConfirmationModal">
 			<p>Are you sure  you want to delete this task? This can't be undone and the task will be gone forever.</p>
 			<button id="keepTask">No thanks, I'll keep it</button> <button id="deleteTask">Yes, delete!</button>
+		</div>
+
+		<div id="changeUserNameModal">
+			<p>What would you like your nwe user name to be?</p>
+			<input type="text" value="New User Name" id="newUserName" />
 		</div>
 	</div>
 

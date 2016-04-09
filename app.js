@@ -17,6 +17,8 @@ $(document).ready(function() {
 		$formContent = $addTaskFormModal.detach(),
 		$deleteTaskConfirmationModal = $('#deleteTaskConfirmationModal'),
 		$deleteConfirmationContent = $deleteTaskConfirmationModal.detach(),
+		$changeUserNameModal = $('#changeUserNameModal'),
+		$changeUserNameContent = $changeUserNameModal.detach(),
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -239,7 +241,6 @@ $(document).ready(function() {
 			content: $deleteConfirmationContent
 		})
 
-		console.log(this);
 		var uid = firebase.getAuth().uid,
 			thisTaskID = $(this).data('deletion'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
@@ -257,24 +258,44 @@ $(document).ready(function() {
 	});
 
 	$inProgressTasks.on('click', 'a', function(e) {
-		var confirmDelete = confirm('Are you sure  you want to delete this task? This can\'t be undone and the task will be gone forever.');
-		if(confirmDelete == true) {
-			var uid = firebase.getAuth().uid,
-				thisTaskID = $(this).data('deletion'),
-				thisTaskRef = firebase.child('users').child(uid).child('task');
+		e.preventDefault();
+
+		modal.open({
+			content: $deleteConfirmationContent
+		})
+
+		var uid = firebase.getAuth().uid,
+			thisTaskID = $(this).data('deletion'),
+			thisTaskRef = firebase.child('users').child(uid).child('task');
+
+		$('#deleteTask').on('click', function(e) {
+			console.log(this);
 			thisTaskRef.child(thisTaskID).remove();
+			modal.close();
 			sortTasks();
-		}
+		})
+
+		$('#keepTask').on('click', function(e) {
+			modal.close();
+		})
+	});
+
+	// Chaning user name
+	$userName.on('click', function(e) {
+		modal.open({
+			content: $changeUserNameContent
+		})
 	})
 
-
-
-
-
-
-
-
-
-
-
+	$('#newUserName').on('keypress', function(e) {
+		var uid = firebase.getAuth().uid,
+			userRef = firebase.child('users').child(uid);
+		if(e.which == 13) {
+			userRef.update({
+				name: $('#newUserName').val();
+			})
+			$userName.text($('#newUserName').val());
+			modal.close();
+		}
+	})
 })

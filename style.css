@@ -20,6 +20,6 @@ li {
 	background: pink;
 }
 
-#addTaskForm, #deleteTaskConfirmationModal {
+#addTaskForm, #deleteTaskConfirmationModal, #changeUserNameModal {
 	background: lime;
 }
