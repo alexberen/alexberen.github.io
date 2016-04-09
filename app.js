@@ -63,7 +63,7 @@ $(document).ready(function() {
 	// Event Listener for logging out
 	$logOut.on('click', function(e) {
 		e.preventDefault();
-		
+
 		$loggedInView.hide();
 		$loggingIn.show();
 		$inProgressTasks.empty();
@@ -138,6 +138,7 @@ $(document).ready(function() {
 
 	// Event listener for completing tasks
 	$('button').on('click', function(e) {
+		console.log('You clicked da button', this);
 		var thisTaskID = $(this).data('id'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 		thisTaskRef.child(thisTaskID).update({
