@@ -125,7 +125,7 @@ $(document).ready(function() {
 	})
 
 	// Modal Test for making new Tasks
-	var modal = function() {
+	var modal = (function() {
 		var $window = $(window),
 			$modal = $('<div class="modal"></div>'),
 			$content = $('<div class="modal-content"></div>'),
@@ -165,7 +165,7 @@ $(document).ready(function() {
 				$(window).off('resize', modal.center);
 			}
 		};
-	}();
+	}());
 
 	// Initializing Modal for adding new tasks
 	(function() {
