@@ -82,7 +82,8 @@ $(document).ready(function() {
 					var context = {
 						taskName: childData.taskName,
 						taskCategory: childData.taskCategory,
-						taskDescription: childData.taskDescription
+						taskDescription: childData.taskDescription,
+						taskID: childData.taskID
 					};
 					var html = template(context);
 					$inProgressTasks.append(html);
@@ -116,9 +117,8 @@ $(document).ready(function() {
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
 			taskCategory: $taskCategory.val(),
-		})
-		var taskID = newTaskRef.key();
-		console.log(taskID);
+			taskID: newTaskRef.key()
+		});
 
 		// sort tasks
 		sortTasks();
