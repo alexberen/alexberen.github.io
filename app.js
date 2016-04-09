@@ -127,4 +127,4 @@ $(document).ready(function() {
 		$taskDescription.val('');
 		$taskCategory.val('');
 	})
-}) 
+})
