@@ -122,6 +122,6 @@ $(document).ready(function() {
 		// clear form fields
 		$taskName.val('');
 		$taskDescription.val('');
-		$taskCategory.val('');
+		$taskCategory.val('').blur();
 	})
 })
