@@ -239,6 +239,8 @@ $(document).ready(function() {
 			content: $deleteConfirmationContent
 		})
 
+		console.log(this);
+
 		$('#deleteTask').on('click', function(e) {
 			console.log(this);
 			var uid = firebase.getAuth().uid,
