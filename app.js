@@ -138,14 +138,24 @@ $(document).ready(function() {
 
 	// Event listener for completing tasks
 	$inProgressTasks.on('click', 'button', function(e) {
-		console.log('You clicked da button', this);
 		var uid = firebase.getAuth().uid,
 			thisTaskID = $(this).data('id'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 		thisTaskRef.child(thisTaskID).update({
-			status: "Complete"
+			status: 'Complete'
 		})
-		sortTasks();
+		// sortTasks();
+	})
+
+	// Event listener for seting completed tasks back to in progress
+	$completedTasks.on('click', 'button', function(e) {
+		var uid = firebase.getAuth().uid,
+			thisTaskID = $(this).data('id'),
+			thisTaskRef = firebase.child('users').child(uid).child('task');
+		thisTaskRef.child(thisTaskID).update({
+			status: 'In Progress'
+		})
+		// sortTasks();
 	})
 
 
