@@ -243,15 +243,17 @@ $(document).ready(function() {
 
 		$('#deleteTask').on('click', function(e) {
 			confirmDelete = true;
-		})
 
-		if(confirmDelete == true) {
-			var uid = firebase.getAuth().uid,
-				thisTaskID = $(this).data('deletion'),
-				thisTaskRef = firebase.child('users').child(uid).child('task');
-			thisTaskRef.child(thisTaskID).remove();
-			sortTasks();
-		}
+			if(confirmDelete == true) {
+				var uid = firebase.getAuth().uid,
+					thisTaskID = $(this).data('deletion'),
+					thisTaskRef = firebase.child('users').child(uid).child('task');
+				thisTaskRef.child(thisTaskID).remove();
+				sortTasks();
+			} else {
+				modal.close();
+			}
+		})
 	})
 
 	$inProgressTasks.on('click', 'a', function(e) {
