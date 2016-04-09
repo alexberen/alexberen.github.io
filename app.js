@@ -288,11 +288,15 @@ $(document).ready(function() {
 	})
 
 	$('#newUserName').on('submit', function(e) {
+		e.preventDefault();
+
+		console.log('Before update: ', $('#newUserName').val());
 		var uid = firebase.getAuth().uid,
 			userRef = firebase.child('users').child(uid);
 		userRef.update({
 			name: $('#newUserName').val()
 		})
+		console.log('After update: ', $('#newUserName').val());
 		$userName.text($('#newUserName').val());
 		modal.close();
 	})
