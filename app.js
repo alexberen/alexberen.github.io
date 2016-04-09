@@ -135,7 +135,7 @@ $(document).ready(function() {
 	// Event listener for completing tasks
 	$('button').on('click', function(e) {
 		var thisTaskID = $(this).data('id'),
-			thisTaskRef = new Firebase('https://taskstodo.firebaseio.com/users/' + authData.uid + '/task');
+			thisTaskRef = firebase.child('users').child(uid).child('task');
 		thisTaskRef.child(thisTaskID).update({
 			status: "Complete"
 		})
