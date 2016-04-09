@@ -117,10 +117,11 @@ $(document).ready(function() {
 			taskDescription: $taskDescription.val(),
 			taskCategory: $taskCategory.val()
 		})
-		var test = firebase.child('users').child(uid).child('task').once('value', function(snapshot) {
+		console.log('New task:');
+		firebase.child('users').child(uid).child('task').once('value', function(snapshot) {
 			var data = snapshot.val();
+			console.log(data);
 		})
-		console.log('New task: ', test);
 
 		// sort tasks
 		sortTasks();
