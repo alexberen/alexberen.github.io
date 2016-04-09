@@ -36,13 +36,13 @@ $(document).ready(function() {
 	// Event Listener for logging in with Google
 	$logInButton.on('click', function(e) {
 		firebase.authWithOAuthPopup('google', function(error, authData) {
-		var uid = firebase.getAuth().uid;
 			if (error) {
 				console.log("Login Failed!", error);
 			} else {
 				// console.log("Authenticated successfully with payload:", authData);
 
 				// Stores user in Firebase if they're new
+				var uid = firebase.getAuth().uid;
 				firebase.onAuth(function(authData) {
 					if (authData == null) {
 						firebase.child('users').child(authData.uid).set({
