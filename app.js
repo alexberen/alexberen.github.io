@@ -287,15 +287,13 @@ $(document).ready(function() {
 		})
 	})
 
-	$('#newUserName').on('keypress', function(e) {
+	$('#newUserName').on('submit', function(e) {
 		var uid = firebase.getAuth().uid,
 			userRef = firebase.child('users').child(uid);
-		if(e.which == 13) {
-			userRef.update({
-				name: $('#newUserName').val()
-			})
-			$userName.text($('#newUserName').val());
-			modal.close();
-		}
+		userRef.update({
+			name: $('#newUserName').val()
+		})
+		$userName.text($('#newUserName').val());
+		modal.close();
 	})
 })
