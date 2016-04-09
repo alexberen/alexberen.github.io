@@ -26,7 +26,7 @@ $(document).ready(function() {
 		if(authData) {
 			$loggedInView.show();
 			$loggingIn.hide();
-			// sortTasks();
+			sortTasks();
 		}
 	}
 	isAuthenicated();
@@ -47,11 +47,9 @@ $(document).ready(function() {
 						});
 					}
 				});
-				var uid = firebase.getAuth().uid;
 				$loggedInView.show();
 				$loggingIn.hide();
-				// sortTasks();
-				return uid;
+				sortTasks();
 			}
 		});
 	})
@@ -65,17 +63,13 @@ $(document).ready(function() {
 	})
 
 	// Sorting tasks and using handlebars to generate html
-	// function sortTasks() {
-		// $inProgressTasks.empty();
-		// $completedTasks.empty();
+	function sortTasks() {
+		$inProgressTasks.empty();
+		$completedTasks.empty();
 
-		// var uid = firebase.getAuth().uid;
+		var uid = firebase.getAuth().uid;
 
 		firebase.child('users').child(uid).child('task').on('child_changed', function(snapshot) {
-			$inProgressTasks.empty();
-
-			// var uid = firebase.getAuth().uid;
-
 			snapshot.forEach(function(childSnapshot) {
 				var childData = childSnapshot.val();
 
@@ -99,7 +93,7 @@ $(document).ready(function() {
 				}
 			});
 		});
-	// }
+	}
 	
 	// Creating tasks
 	$addTaskForm.submit(function(e) {
@@ -108,8 +102,8 @@ $(document).ready(function() {
 		// Variables in this function's scope
 		var $taskName = $('#taskName'),
 			$taskDescription = $('#taskDescription');
-			$taskCategory = $('#taskCategory');
-			// uid = firebase.getAuth().uid;
+			$taskCategory = $('#taskCategory'),
+			uid = firebase.getAuth().uid;
 
 		// Create 'task' object in Firebase
 		firebase.child('users').child(uid).child('task').push({
@@ -120,7 +114,7 @@ $(document).ready(function() {
 		})
 
 		// sort tasks
-		// sortTasks();
+		sortTasks();
 		
 		// clear form fields
 		$taskName.val('');
