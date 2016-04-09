@@ -20,7 +20,7 @@ $(document).ready(function() {
 		sourceCompleted = $('#taskdone').html(),
 		templateCompleted = Handlebars.compile(sourceCompleted);
 
-	// Hide the logged in vew and check if user is logged in.
+	// Hide the logged in vew and complated tasks and check if user is logged in.
 	// If yes, hides login screen and shows logged in view
 	$loggedInView.hide();
 	$completedTasks.hide();
@@ -46,12 +46,12 @@ $(document).ready(function() {
 				// console.log("Authenticated successfully with payload:", authData);
 
 				// Stores user in Firebase if they're new
-				var uid = firebase.getAuth().uid;
+				var uid = firebase.getAuth().uid,
+					doesUserExist = firebase.child('users').child(uid).child('task');
 				firebase.onAuth(function(authData) {
-					if (authData.name == null) {
+					if (doesUserExist == null) {
 						firebase.child('users').child(authData.uid).set({
-							name: authData.google.displayName,
-							// email: authData.google.email
+							name: authData.google.displayName
 						});
 					}
 				});
