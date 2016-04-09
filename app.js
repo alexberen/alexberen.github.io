@@ -131,4 +131,14 @@ $(document).ready(function() {
 		$taskDescription.val('');
 		$taskCategory.val('').blur();
 	})
+
+	$('button').on('click' function(e) {
+		console.log('You clicked a button:');
+		firebase.child('users').child(uid).child('task').once('value', function(snapshot) {
+			var data = snapshot.val();
+			console.log(data);
+			console.log($(this).data);
+		})
+	})
+
 })
