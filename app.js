@@ -13,6 +13,7 @@ $(document).ready(function() {
 		$logOut = $('#logOut'),
 		$showCompletedChevron = $('#showCompletedChevron'),
 		$createNewTask = $('#createNewTask'),
+		$close = $('button.modal-close'),
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -128,7 +129,7 @@ $(document).ready(function() {
 		var $window = $(window),
 			$modal = $('<div class="modal"></div>'),
 			$content = $('<div class="modal-content"></div>'),
-			$close = $('<button role="button" class="modal-close">X</button>');
+			// $close = $('<button role="button" class="modal-close">X</button>');
 
 		$modal.append($content, $close);
 
