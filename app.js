@@ -113,11 +113,11 @@ $(document).ready(function() {
 
 		if($showCompletedChevron.hasClass('fa-rotate-90')) {
 			$showCompletedChevron.toggleClass('fa-rotate-90');
-			$completedTasks.show();
+			$completedTasks.hide();
 							
 		} else {
 			$showCompletedChevron.toggleClass('fa-rotate-90');
-			$completedTasks.hide();
+			$completedTasks.show();
 		}
 
 	})
