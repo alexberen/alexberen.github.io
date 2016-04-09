@@ -127,7 +127,7 @@ $(document).ready(function() {
 	var modal = function() {
 		var $window = $(window),
 			$modal = $('<div class="modal"></div>'),
-			$content = $('div class="modal-content"></div>'),
+			$content = $('<div class="modal-content"></div>'),
 			$close = $('<button role="button" class="modal-close">X</button>');
 
 		$modal.append($content, $close);
