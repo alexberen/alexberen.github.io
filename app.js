@@ -115,6 +115,7 @@ $(document).ready(function() {
 			taskDescription: $taskDescription.val(),
 			taskCategory: $taskCategory.val()
 		})
+		console.log('new task ', this);
 
 		// sort tasks
 		sortTasks();
