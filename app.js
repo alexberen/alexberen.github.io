@@ -26,7 +26,7 @@ $(document).ready(function() {
 	function isAuthenicated() {
 		if(authData) {
 			$loggedInView.show();
-			$userName.val(authData.google.displayName);
+			$userName.text(authData.google.displayName);
 			$loggingIn.hide();
 			sortTasks();
 		}
@@ -50,7 +50,7 @@ $(document).ready(function() {
 					}
 				});
 				$loggedInView.show();
-				$userName.val(authData.google.displayName);
+				$userName.text(authData.google.displayName);
 				$loggingIn.hide();
 				sortTasks();
 			}
