@@ -45,7 +45,8 @@ $(document).ready(function() {
 				firebase.onAuth(function(authData) {
 					if (authData == null) {
 						firebase.child('users').child(authData.uid).set({
-							name: authData.google.displayName
+							name: authData.google.displayName,
+							email: authData.google.email
 						});
 					}
 				});
@@ -64,7 +65,6 @@ $(document).ready(function() {
 		$inProgressTasks.empty();
 		$completedTasks.empty();
 		firebase.unauth();
-		// console.log('logged out');
 	})
 
 	// Sorting tasks and using handlebars to generate html
@@ -117,14 +117,11 @@ $(document).ready(function() {
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
 			taskCategory: $taskCategory.val()
-			// taskID: newTaskRef.key()
 		});
-		console.log('New task added: ', newTaskRef);
 		var taskID = newTaskRef.key();
 		newTaskRef.update({
 			taskID: taskID
 		});
-		console.log('New task updated: ', newTaskRef);
 
 		// sort tasks
 		sortTasks();
