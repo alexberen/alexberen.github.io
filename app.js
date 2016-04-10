@@ -33,10 +33,17 @@ $(document).ready(function() {
 	$completedTasks.hide();
 	
 	function isAuthenicated() {
+
+		function getUserName() {
+			var uid = firebase.getAuth().uid;
+			firebase.child('users').child(uid).on('value', function(snapshot) {
+				console.log(snapshot);
+			})
+		}
+
 		if(authData) {
 			$loggedInView.show();
-			var uid = firebase.getAuth().uid;
-			$userName.text(firebase.child('users').child(uid).child('name'));
+			// $userName.text(firebase.child('users').child(uid).child('name'));
 			$loggingIn.hide();
 			sortTasks();
 		}
