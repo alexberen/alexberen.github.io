@@ -301,7 +301,6 @@ $(document).ready(function() {
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		deleteTasks(thisTaskID, thisTaskRef);
-		getCompletedTasks();
 	});
 
 	$inProgressTasks.on('click', 'a', function(e) {
@@ -312,7 +311,6 @@ $(document).ready(function() {
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		deleteTasks(thisTaskID, thisTaskRef);
-		getInProgressTasks();
 	});
 
 	// Delete tasks function
@@ -323,6 +321,8 @@ $(document).ready(function() {
 
 		$('#deleteTask').on('click', function(e) {
 			thisTaskRef.child(thisTaskID).remove();
+			getInProgressTasks();
+			getCompletedTasks();
 			modal.close();
 		})
 
