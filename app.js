@@ -222,36 +222,36 @@ $(document).ready(function() {
 
 			// 	modal.close();
 			// })
-		}
-
-		// Checking for empyt catgory
-		var checkTaskCategory;
-		if($taskCategory.val('')) {
-			checkTaskCategory = 'uncategorized'
 		} else {
-			checkTaskCategory = $taskCategory.val()
+			// Checking for empty category
+			var checkTaskCategory;
+			if($taskCategory.val('')) {
+				checkTaskCategory = 'uncategorized'
+			} else {
+				checkTaskCategory = $taskCategory.val()
+			}
+
+			// Create 'task' object in Firebase
+			var newTaskRef = taskRef.push({
+				status: 'In Progress',
+				taskName: $taskName.val(),
+				taskDescription: $taskDescription.val(),
+				taskCategory: checkTaskCategory
+			});
+			var taskID = newTaskRef.key();
+			newTaskRef.update({
+				taskID: taskID
+			});
+
+			// get in progress tasks
+			getInProgressTasks();
+			
+			// clear form fields and close modal
+			$taskName.val('').blur();
+			$taskDescription.val('');
+			$taskCategory.val('').blur();
+			modal.close();			
 		}
-
-		// Create 'task' object in Firebase
-		var newTaskRef = taskRef.push({
-			status: 'In Progress',
-			taskName: $taskName.val(),
-			taskDescription: $taskDescription.val(),
-			taskCategory: checkTaskCategory
-		});
-		var taskID = newTaskRef.key();
-		newTaskRef.update({
-			taskID: taskID
-		});
-
-		// get in progress tasks
-		getInProgressTasks();
-		
-		// clear form fields and close modal
-		$taskName.val('').blur();
-		$taskDescription.val('');
-		$taskCategory.val('').blur();
-		modal.close();
 	})
 
 	// Event listener for completing tasks
