@@ -330,6 +330,7 @@ $(document).ready(function() {
 
 		var test = thisTaskRef.child(thisTaskID).once('value', function(snapshot) {
 			console.log(snapshot.val());
+			console.log(snapshot.taskName);
 		})
 
 		// var context = {
