@@ -48,7 +48,15 @@
 
 		<div id="inProgressContainer">
 			<h2>Tasks In Progress</h2>
-			<p id="categoryLinks"></p>
+			<p id="categoryLinks">
+				<p>Categories:</p>
+				<ul id="categoriesUL">
+					<li>All</li>
+					<script id="categoryTemplate" type="text/x-handlebars-template">
+						<li>{{category}}</li>
+					</script>
+				</ul>
+			</p>
 			<ul id="inProgressTasks">
 				<script id="tasktodo" type="text/x-handlebars-template">
 					<li>

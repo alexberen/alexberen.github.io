@@ -19,14 +19,17 @@ $(document).ready(function() {
 		$deleteConfirmationContent = $deleteTaskConfirmationModal.detach(),
 		$editTaskModal = $('#editTaskModal'),
 		$editTaskContent = $editTaskModal.detach(),
-		$editTaskForm = $('#editTaskForm')
+		$editTaskForm = $('#editTaskForm'),
+		$categoriesUL = $('#categoriesUL'),
 		authData = firebase.getAuth();
 
 	// Handlebars variables
 	var source = $('#tasktodo').html(),
 		template = Handlebars.compile(source),
 		sourceCompleted = $('#taskdone').html(),
-		templateCompleted = Handlebars.compile(sourceCompleted);
+		templateCompleted = Handlebars.compile(sourceCompleted),
+		sourceCategories = $('#categoryTemplate').html(),
+		templateCategories = Handlebars.compile(sourceCategories);
 
 	// Hide the logged in vew and complated tasks and check if user is logged in.
 	// If yes, hides login screen and shows logged in view
@@ -135,6 +138,26 @@ $(document).ready(function() {
 		})
 	}
 
+	// Getting categories
+	function getCategories() {
+		$categoriesUL.empty();
+
+		var uid = firebase.getAuth().uid;
+
+		firebase.child('users').child(uid).child('task').on('value', function(snapshot) {
+			snapshot.forEach(function(childSnapshot) {
+				var childData = childSnapshot.val();
+
+				var context = {
+					category: childData.taskCategory
+				};
+				var html = templateCategories(context);
+				$categoriesUL.append(html);
+			})
+		})
+	}
+	getCategories();
+
 	// Event listener for showing/hiding completed tasks
 	$showCompletedChevron.on('click', function(e) {
 
@@ -234,8 +257,9 @@ $(document).ready(function() {
 				taskID: taskID
 			});
 
-			// get in progress tasks
+			// get in progress tasks and categories
 			getInProgressTasks();
+			getCategories();
 			
 			// clear form fields and close modal
 			$taskName.val('').blur();
@@ -256,6 +280,7 @@ $(document).ready(function() {
 		});
 
 		getInProgressTasks();
+		getCategories();
 
 		if($showCompletedChevron.hasClass('fa-rotate-90')) {
 			getCompletedTasks();
@@ -273,6 +298,7 @@ $(document).ready(function() {
 		});
 
 		getInProgressTasks();
+		getCategories();
 		getCompletedTasks();
 	})
 
@@ -307,6 +333,7 @@ $(document).ready(function() {
 			thisTaskRef.child(thisTaskID).remove();
 			getInProgressTasks();
 			getCompletedTasks();
+			getCategories();
 			modal.close();
 		})
 
@@ -329,6 +356,7 @@ $(document).ready(function() {
 			thisTaskID = $(this).data('edit'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
+		// Filling it edit form with existing task info
 		var test = thisTaskRef.child(thisTaskID).once('value', function(snapshot) {
 			$newName.attr('value', snapshot.val().taskName);
 			$newDescription.text(snapshot.val().taskDescription);
@@ -358,8 +386,9 @@ $(document).ready(function() {
 					taskCategory: $newCategory.val()
 				})
 
-				// get in progress tasks
+				// get in progress tasks and categories
 				getInProgressTasks();
+				getCategories();
 				
 				//close modal
 				modal.close();
