@@ -19,6 +19,7 @@ $(document).ready(function() {
 		$deleteConfirmationContent = $deleteTaskConfirmationModal.detach(),
 		$changeUserNameModal = $('#changeUserNameModal'),
 		$changeUserNameContent = $changeUserNameModal.detach(),
+		userName,
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -42,9 +43,8 @@ $(document).ready(function() {
 				var userName = data.name;
 				console.log('userName: ', userName);
 
-				return userName;
+				userName = userName;
 			})
-			return userName;
 		}
 		getUserName();
 
