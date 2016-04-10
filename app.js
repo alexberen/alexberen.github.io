@@ -228,7 +228,7 @@ $(document).ready(function() {
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
-			if($taskCategory.val() == '') {
+			if($taskCategory.val('')) {
 				taskCategory: 'uncategorized'
 			} else {
 				taskCategory: $taskCategory.val()
