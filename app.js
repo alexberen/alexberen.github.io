@@ -326,7 +326,7 @@ $(document).ready(function() {
 			$newCategory = $('#newCategory'),
 			uid = firebase.getAuth().uid,
 			thisTaskID = $(this).data('id'),
-			thisTaskRef = firebase.child('users').child(uid).child('task');
+			thisTaskRef = firebase.child('users').child(uid).child('task').child(thisTaskID);
 
 		console.log(thisTaskRef);
 		// var context = {
