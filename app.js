@@ -39,7 +39,7 @@ $(document).ready(function() {
 			firebase.child('users').child(uid).once('value', function(snapshot) {
 				var data = snapshot.val();
 				console.log('data: ', data);
-				var userName = data.name();
+				var userName = data.name;
 				console.log('userName: ', userName);
 
 				return userName;
