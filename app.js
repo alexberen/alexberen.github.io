@@ -36,14 +36,12 @@ $(document).ready(function() {
 
 		function getUserName() {
 			var uid = firebase.getAuth().uid;
-			firebase.child('users').child(uid).on('value', function(snapshot) {
-				snapshot.forEach(function(childSnapshot) {
-					console.log('snapshot: ', snapshot);
-					var userName = childSnapshot.val();
-					console.log('userName: ', userName);
+			firebase.child('users').child(uid).once('value', function(snapshot) {
+				var data = snapshot.val();
+				console.log('data: ', data);
+				var userName = data.name();
+				console.log('userName: ', userName);
 
-					return userName;
-				})
 				return userName;
 			})
 			return userName;
