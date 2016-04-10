@@ -288,6 +288,7 @@ $(document).ready(function() {
 		var $newUserName = $('newUserName');
 		$newUserName.on('keypress', function(e) {
 			if(e.which == 13) {
+				e.preventDefault();
 				console.log('You pressed enter', $newUserName.val());	
 			}
 		})
