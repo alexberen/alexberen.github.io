@@ -19,8 +19,6 @@ $(document).ready(function() {
 		$deleteConfirmationContent = $deleteTaskConfirmationModal.detach(),
 		$changeUserNameModal = $('#changeUserNameModal'),
 		$changeUserNameContent = $changeUserNameModal.detach(),
-		$nameRequiredModal = $('#nameRequiredModal'),
-		$nameRequiredContent = $nameRequiredModal.detach(),
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -213,15 +211,7 @@ $(document).ready(function() {
 
 		// Requiring a title
 		if($taskName.val('')) {
-			// alert('You must give this task a name');
-			modal.open({
-				content: $nameRequiredContent
-			});
-			$('#ok').on('click', function(e) {
-				e.preventDefault();
-
-				modal.close();
-			})
+			alert('You must give this task a name');
 		} else {
 			// Checking for empty category
 			var checkTaskCategory;
