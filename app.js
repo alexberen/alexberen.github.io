@@ -17,8 +17,6 @@ $(document).ready(function() {
 		$formContent = $addTaskFormModal.detach(),
 		$deleteTaskConfirmationModal = $('#deleteTaskConfirmationModal'),
 		$deleteConfirmationContent = $deleteTaskConfirmationModal.detach(),
-		$changeUserNameModal = $('#changeUserNameModal'),
-		$changeUserNameContent = $changeUserNameModal.detach(),
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -309,23 +307,4 @@ $(document).ready(function() {
 			modal.close();
 		})
 	}
-
-	// Changing user name
-	// $userName.on('click', function(e) {
-	// 	modal.open({
-	// 		content: $changeUserNameContent
-	// 	})
-	// 	var $newUserName = $('#newUserName');
-	// 	$newUserName.on('keypress', function(e) {
-	// 		if(e.which == 13) {
-	// 			var uid = firebase.getAuth().uid;
-				
-	// 			firebase.child('users').child(uid).update({
-	// 				name: $newUserName.val()
-	// 			})
-	// 			$userName.text($newUserName.val());
-	// 			modal.close();
-	// 		}
-	// 	})
-	// })
 })
