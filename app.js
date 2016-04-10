@@ -328,6 +328,10 @@ $(document).ready(function() {
 			thisTaskID = $(this).data('edit'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
+		var test = thisTaskRef.once('value', function(snapshot) {
+			console.log(snapshot.val());
+		})
+		console.log('test: ', test);
 		console.log('thisTaskRef: ', thisTaskRef);
 		console.log('thisTaskID: ', thisTaskID);
 		console.log('thisTaskRef.child(thisTaskID).taskName: ', thisTaskRef.child(thisTaskID).taskName);
