@@ -72,6 +72,7 @@ $(document).ready(function() {
 			}
 			return uid;
 		});
+		return uid;
 	})
 
 	// Event Listener for logging out
