@@ -330,7 +330,7 @@ $(document).ready(function() {
 
 		console.log('thisTaskRef: ', thisTaskRef);
 		console.log('thisTaskID: ', thisTaskID);
-		console.log('thisTaskID.taskName: ', thisTaskID.taskName);
+		console.log('thisTaskRef.child(thisTaskID).taskName: ', thisTaskRef.child(thisTaskID).taskName);
 
 		// var context = {
 		// 	editName: thisTaskRef.taskName,
