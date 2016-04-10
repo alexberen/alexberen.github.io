@@ -331,10 +331,7 @@ $(document).ready(function() {
 		var test = thisTaskRef.once('value', function(snapshot) {
 			console.log(snapshot.val());
 		})
-		console.log('test: ', test);
-		console.log('thisTaskRef: ', thisTaskRef);
-		console.log('thisTaskID: ', thisTaskID);
-		console.log('thisTaskRef.child(thisTaskID).taskName: ', thisTaskRef.child(thisTaskID).taskName);
+		console.log('snapshot.thisTaskID');
 
 		// var context = {
 		// 	editName: thisTaskRef.taskName,
