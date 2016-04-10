@@ -52,7 +52,7 @@
 			<ul id="inProgressTasks">
 				<script id="tasktodo" type="text/x-handlebars-template">
 					<li>
-						<h3 class="taskName">{{taskName}}</h3>
+						<p class="taskName">{{taskName}}</p>
 						<p class="taskCategory">Filed in: {{taskCategory}}</p>
 						<p class="taskDescription">{{taskDescription}}</p>
 						<button data-id="{{taskID}}">Complete Task</button> | <a href="" data-deletion="{{taskID}}">Delete Task</a>
@@ -66,7 +66,7 @@
 			<ul id="completedTasks">
 				<script id="taskdone" type="text/x-handlebars-template">
 					<li>
-						<h3 class="completedName">{{completedName}}</h3>
+						<p class="completedName">{{completedName}}</p>
 						<p class="completedCategory">{{completedCategory}}</p>
 						<p class="completedDescription">{{completedDescription}}</p>
 						<button data-completion="{{taskID}}">Set to In Progress</button> | <a href="" data-deletion="{{taskID}}">Delete Task</a>
@@ -78,6 +78,21 @@
 		<div id="deleteTaskConfirmationModal">
 			<p>Are you sure  you want to delete this task? This can't be undone and the task will be gone forever.</p>
 			<button id="keepTask">No thanks, I'll keep it</button> <button id="deleteTask">Yes, delete!</button>
+		</div>
+
+		<div id="editTaskModal">
+			<h2>Edit Task</h2>
+			<form id="editTaskForm">
+				<script id="taskedit" type="text/x-handlebars-template">
+					<div class="addTaskLabel">Task Name:</div>
+					<input type="text" placeholder="{{editName}}" id="newName" />
+					<div class="addTaskLabel">More Information:</div>
+					<textarea id="newDescription">{{editDescription}}</textarea>
+					<div class="addTaskLabel">Category:</div>
+					<input type="text" placeholder="{{editCategory}}" id="newCategory" />
+				</script>
+				<p><input type="submit" value="Update Task" id="updateTaskButton" /></p>
+			</form>
 		</div>
 	</div>
 

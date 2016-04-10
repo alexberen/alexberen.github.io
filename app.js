@@ -17,6 +17,9 @@ $(document).ready(function() {
 		$formContent = $addTaskFormModal.detach(),
 		$deleteTaskConfirmationModal = $('#deleteTaskConfirmationModal'),
 		$deleteConfirmationContent = $deleteTaskConfirmationModal.detach(),
+		$editTaskModal = $('#editTaskModal'),
+		$editTaskContent = $editTaskModal.detach(),
+		$editTaskForm = $('#editTaskForm')
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -202,7 +205,7 @@ $(document).ready(function() {
 
 		// Variables in this function's scope
 		var $taskName = $('#taskName'),
-			$taskDescription = $('#taskDescription');
+			$taskDescription = $('#taskDescription'),
 			$taskCategory = $('#taskCategory'),
 			uid = firebase.getAuth().uid,
 			taskRef = firebase.child('users').child(uid).child('task');
@@ -247,9 +250,11 @@ $(document).ready(function() {
 		var uid = firebase.getAuth().uid,
 			thisTaskID = $(this).data('id'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
+		
 		thisTaskRef.child(thisTaskID).update({
 			status: 'Complete'
 		});
+
 		getInProgressTasks();
 
 		if($showCompletedChevron.hasClass('fa-rotate-90')) {
@@ -262,9 +267,11 @@ $(document).ready(function() {
 		var uid = firebase.getAuth().uid,
 			thisTaskID = $(this).data('completion'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
+		
 		thisTaskRef.child(thisTaskID).update({
 			status: 'In Progress'
 		});
+
 		getInProgressTasks();
 		getCompletedTasks();
 	})
@@ -307,4 +314,44 @@ $(document).ready(function() {
 			modal.close();
 		})
 	}
+
+	// Initialilzing modal for editing in progress tasks
+	$inProgressTasks.on('click', 'p', function(e) {
+		var $newName = $('#newName'),
+			$newDescription = $('#newDescription'),
+			$newCategory = $('#newCategory'),
+			uid = firebase.getAuth().uid,
+			thisTaskID = $(this).data('id'),
+			thisTaskRef = firebase.child('users').child(uid).child('task');
+
+			modal.open({
+				content: $editTaskContent
+			})
+
+			var context = {
+				editName: thisTaskRef.taskName,
+				editCategory: thisTaskRef.taskCategory,
+				editDescription: thisTaskRef.taskDescription,
+			};
+			var html = template(context);
+			$editTaskForm.append(html);
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })
