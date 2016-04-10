@@ -274,6 +274,10 @@ $(document).ready(function() {
 			status: 'Complete'
 		});
 		getInProgressTasks();
+
+		if($showCompletedChevron.hasClass('fa-rotate-90')) {
+			getCompletedTasks();
+		}
 	})
 
 	// Event listener for seting completed tasks back to in progress
@@ -285,6 +289,7 @@ $(document).ready(function() {
 			status: 'In Progress'
 		});
 		getInProgressTasks();
+		getCompletedTasks();
 	})
 
 	//Event listeners for deleting tasks
