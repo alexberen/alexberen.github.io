@@ -69,11 +69,10 @@ $(document).ready(function() {
 				$userName.text(authData.google.displayName);
 				$loggingIn.hide();
 				sortTasks();
-				
+
 				return uid;
 			}
 		});
-		// return uid;
 	})
 
 	// Event Listener for logging out
@@ -92,7 +91,7 @@ $(document).ready(function() {
 		$inProgressTasks.empty();
 		$completedTasks.empty();
 
-		// var uid = firebase.getAuth().uid;
+		var uid = firebase.getAuth().uid;
 
 		firebase.child('users').child(uid).child('task').on('value', function(snapshot) {
 			snapshot.forEach(function(childSnapshot) {
@@ -192,7 +191,7 @@ $(document).ready(function() {
 		var $taskName = $('#taskName'),
 			$taskDescription = $('#taskDescription');
 			$taskCategory = $('#taskCategory'),
-			// uid = firebase.getAuth().uid,
+			uid = firebase.getAuth().uid,
 			taskRef = firebase.child('users').child(uid).child('task');
 
 		// Create 'task' object in Firebase
@@ -219,8 +218,8 @@ $(document).ready(function() {
 
 	// Event listener for completing tasks
 	$inProgressTasks.on('click', 'button', function(e) {
-		// var uid = firebase.getAuth().uid,
-		var thisTaskID = $(this).data('id'),
+		var uid = firebase.getAuth().uid,
+			thisTaskID = $(this).data('id'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 		thisTaskRef.child(thisTaskID).update({
 			status: 'Complete'
@@ -230,8 +229,8 @@ $(document).ready(function() {
 
 	// Event listener for seting completed tasks back to in progress
 	$completedTasks.on('click', 'button', function(e) {
-		// var uid = firebase.getAuth().uid,
-		var thisTaskID = $(this).data('completion'),
+		var uid = firebase.getAuth().uid,
+			thisTaskID = $(this).data('completion'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 		thisTaskRef.child(thisTaskID).update({
 			status: 'In Progress'
@@ -243,8 +242,8 @@ $(document).ready(function() {
 	$completedTasks.on('click', 'a', function(e) {
 		e.preventDefault();
 
-		// var uid = firebase.getAuth().uid,
-		 var thisTaskID = $(this).data('deletion'),
+		var uid = firebase.getAuth().uid,
+			thisTaskID = $(this).data('deletion'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		deleteTasks(thisTaskID, thisTaskRef);
@@ -253,8 +252,8 @@ $(document).ready(function() {
 	$inProgressTasks.on('click', 'a', function(e) {
 		e.preventDefault();
 
-		// var uid = firebase.getAuth().uid,
-		var thisTaskID = $(this).data('deletion'),
+		var uid = firebase.getAuth().uid,
+			thisTaskID = $(this).data('deletion'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		deleteTasks(thisTaskID, thisTaskRef);
