@@ -326,9 +326,16 @@ $(document).ready(function() {
 			$newCategory = $('#newCategory'),
 			uid = firebase.getAuth().uid,
 			thisTaskID = $(this).data('edit'),
-			thisTaskRef = firebase.child('users').child(uid).child('task').child(thisTaskID);
+			thisTaskRef = firebase.child('users').child(uid).child('task');
 
-		console.log(thisTaskID);
+		var test = thisTaskRef.on('value', function(snapshot){
+			snapshot.forEach(function(childSnapshot) {
+				var childData = childSnapshot.val();
+				
+				console.log(childData.taskName);
+			})
+		})
+
 		// var context = {
 		// 	editName: thisTaskRef.taskName,
 		// 	editCategory: thisTaskRef.taskCategory,
