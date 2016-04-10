@@ -212,7 +212,7 @@ $(document).ready(function() {
 			taskRef = firebase.child('users').child(uid).child('task');
 
 		// Requiring a title
-		if ($taskName.val() == '') {
+		if ($taskName.val('')) {
 			modal.open({
 				content: $nameRequiredContent
 			});
@@ -224,11 +224,12 @@ $(document).ready(function() {
 		}
 
 		// Create 'task' object in Firebase
+		var checkCategory = $taskCategory.val();
 		var newTaskRef = taskRef.push({
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
-			if($taskCategory.val('')) {
+			if(checkCategory == '') {
 				taskCategory: 'uncategorized'
 			} else {
 				taskCategory: $taskCategory.val()
