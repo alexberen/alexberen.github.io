@@ -263,9 +263,9 @@ $(document).ready(function() {
 		// 	content: $deleteConfirmationContent
 		// })
 
-		var uid = firebase.getAuth().uid,
-			thisTaskID = $(this).data('deletion'),
-			thisTaskRef = firebase.child('users').child(uid).child('task');
+		// var uid = firebase.getAuth().uid,
+		// 	thisTaskID = $(this).data('deletion'),
+		// 	thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		deleteTasks();
 
@@ -286,9 +286,9 @@ $(document).ready(function() {
 			content: $deleteConfirmationContent
 		})
 
-		// var uid = firebase.getAuth().uid,
-		// 	thisTaskID = $(this).data('deletion'),
-		// 	thisTaskRef = firebase.child('users').child(uid).child('task');
+		var uid = firebase.getAuth().uid,
+			thisTaskID = $(this).data('deletion'),
+			thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		$('#deleteTask').on('click', function(e) {
 			thisTaskRef.child(thisTaskID).remove();
