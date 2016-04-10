@@ -39,7 +39,7 @@ $(document).ready(function() {
 			$loggedInView.show();
 			$userName.text(authData.google.displayName);
 			$loggingIn.hide();
-			sortTasks();
+			getInProgressTasks();
 		}
 		return uid;
 	}
@@ -68,7 +68,7 @@ $(document).ready(function() {
 				$loggedInView.show();
 				$userName.text(authData.google.displayName);
 				$loggingIn.hide();
-				sortTasks();
+				getInProgressTasks();
 
 				return uid;
 			}
@@ -87,9 +87,42 @@ $(document).ready(function() {
 	})
 
 	// Sorting tasks and using handlebars to generate html
-	function sortTasks() {
+	// function sortTasks() {
+	// 	$inProgressTasks.empty();
+	// 	$completedTasks.empty();
+
+	// 	var uid = firebase.getAuth().uid;
+
+	// 	firebase.child('users').child(uid).child('task').on('value', function(snapshot) {
+	// 		snapshot.forEach(function(childSnapshot) {
+	// 			var childData = childSnapshot.val();
+
+	// 			if(childData.status == 'In Progress') {
+	// 				var context = {
+	// 					taskName: childData.taskName,
+	// 					taskCategory: childData.taskCategory,
+	// 					taskDescription: childData.taskDescription,
+	// 					taskID: childData.taskID
+	// 				};
+	// 				var html = template(context);
+	// 				$inProgressTasks.append(html);
+	// 			} else {
+	// 				var context = {
+	// 					completedName: childData.taskName,
+	// 					completedCategory: childData.taskCategory,
+	// 					completedDescription: childData.taskDescription,
+	// 					taskID: childData.taskID
+	// 				};
+	// 				var html = templateCompleted(context);
+	// 				$completedTasks.append(html);
+	// 			}
+	// 		});
+	// 	});
+	// }
+
+	// Getting in progress tasks
+	function getInProgressTasks() {
 		$inProgressTasks.empty();
-		$completedTasks.empty();
 
 		var uid = firebase.getAuth().uid;
 
@@ -106,7 +139,22 @@ $(document).ready(function() {
 					};
 					var html = template(context);
 					$inProgressTasks.append(html);
-				} else {
+				}			
+			})
+		})
+	}
+
+	// Getting completed tasks
+	function getCompletedTasks() {
+		$completedTasks.empty();
+
+		var uid = firebase.getAuth().uid;
+
+		firebase.child('users').child(uid).child('task').on('value', function(snapshot) {
+			snapshot.forEach(function(childData) {
+				var childData = childSnapshot.val();
+
+				if(childData.status == 'Complete') {
 					var context = {
 						completedName: childData.taskName,
 						completedCategory: childData.taskCategory,
@@ -116,8 +164,8 @@ $(document).ready(function() {
 					var html = templateCompleted(context);
 					$completedTasks.append(html);
 				}
-			});
-		});
+			})
+		})
 	}
 
 	// Event listener for showing/hiding completed tasks
@@ -129,6 +177,7 @@ $(document).ready(function() {
 							
 		} else {
 			$showCompletedChevron.toggleClass('fa-rotate-90');
+			getCompletedTasks();
 			$completedTasks.show();
 		}
 
@@ -206,8 +255,8 @@ $(document).ready(function() {
 			taskID: taskID
 		});
 
-		// sort tasks
-		sortTasks();
+		// get in progress tasks
+		getInProgressTasks();
 		
 		// clear form fields and close modal
 		$taskName.val('').blur();
@@ -224,7 +273,7 @@ $(document).ready(function() {
 		thisTaskRef.child(thisTaskID).update({
 			status: 'Complete'
 		});
-		sortTasks();
+		getInProgressTasks();
 	})
 
 	// Event listener for seting completed tasks back to in progress
@@ -235,7 +284,7 @@ $(document).ready(function() {
 		thisTaskRef.child(thisTaskID).update({
 			status: 'In Progress'
 		});
-		sortTasks();
+		getInProgressTasks();
 	})
 
 	//Event listeners for deleting tasks
@@ -268,7 +317,6 @@ $(document).ready(function() {
 		$('#deleteTask').on('click', function(e) {
 			thisTaskRef.child(thisTaskID).remove();
 			modal.close();
-			sortTasks();
 		})
 
 		$('#keepTask').on('click', function(e) {
