@@ -213,15 +213,15 @@ $(document).ready(function() {
 
 		// Requiring a title
 		if($taskName.val('')) {
-			alert('You must give this task a name');
-			// modal.open({
-			// 	content: $nameRequiredContent
-			// });
-			// $('#ok').on('click', function(e) {
-			// 	e.preventDefault();
+			// alert('You must give this task a name');
+			modal.open({
+				content: $nameRequiredContent
+			});
+			$('#ok').on('click', function(e) {
+				e.preventDefault();
 
-			// 	modal.close();
-			// })
+				modal.close();
+			})
 		} else {
 			// Checking for empty category
 			var checkTaskCategory;
