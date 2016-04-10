@@ -18,8 +18,7 @@ $(document).ready(function() {
 		$deleteTaskConfirmationModal = $('#deleteTaskConfirmationModal'),
 		$deleteConfirmationContent = $deleteTaskConfirmationModal.detach(),
 		$changeUserNameModal = $('#changeUserNameModal'),
-		$changeUserNameContent = $changeUserNameModal.detach(),
-		authData = firebase.getAuth();
+		$changeUserNameContent = $changeUserNameModal.detach();
 
 	// Handlebars variables
 	var source = $('#tasktodo').html(),
@@ -34,11 +33,15 @@ $(document).ready(function() {
 	
 	function isAuthenicated() {
 		if(authData) {
+			var authData = firebase.getAuth(),
+				uid = authData.uid;
+
 			$loggedInView.show();
 			$userName.text(authData.google.displayName);
 			$loggingIn.hide();
 			sortTasks();
 		}
+		return uid;
 	}
 	isAuthenicated();
 
@@ -53,7 +56,8 @@ $(document).ready(function() {
 				// console.log("Authenticated successfully with payload:", authData);
 
 				// Stores user in Firebase if they're new
-				var uid = firebase.getAuth().uid,
+				var authData = firebase.getAuth(),
+					uid = authData.uid,
 					doesUserExist = firebase.child('users').child(uid).child('task');
 				firebase.onAuth(function(authData) {
 					if (doesUserExist == null) {
@@ -67,6 +71,7 @@ $(document).ready(function() {
 				$loggingIn.hide();
 				sortTasks();
 			}
+			return uid;
 		});
 	})
 
@@ -86,7 +91,7 @@ $(document).ready(function() {
 		$inProgressTasks.empty();
 		$completedTasks.empty();
 
-		var uid = firebase.getAuth().uid;
+		// var uid = firebase.getAuth().uid;
 
 		firebase.child('users').child(uid).child('task').on('value', function(snapshot) {
 			snapshot.forEach(function(childSnapshot) {
@@ -186,7 +191,7 @@ $(document).ready(function() {
 		var $taskName = $('#taskName'),
 			$taskDescription = $('#taskDescription');
 			$taskCategory = $('#taskCategory'),
-			uid = firebase.getAuth().uid,
+			// uid = firebase.getAuth().uid,
 			taskRef = firebase.child('users').child(uid).child('task');
 
 		// Create 'task' object in Firebase
@@ -213,8 +218,8 @@ $(document).ready(function() {
 
 	// Event listener for completing tasks
 	$inProgressTasks.on('click', 'button', function(e) {
-		var uid = firebase.getAuth().uid,
-			thisTaskID = $(this).data('id'),
+		// var uid = firebase.getAuth().uid,
+		var thisTaskID = $(this).data('id'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 		thisTaskRef.child(thisTaskID).update({
 			status: 'Complete'
@@ -224,8 +229,8 @@ $(document).ready(function() {
 
 	// Event listener for seting completed tasks back to in progress
 	$completedTasks.on('click', 'button', function(e) {
-		var uid = firebase.getAuth().uid,
-			thisTaskID = $(this).data('completion'),
+		// var uid = firebase.getAuth().uid,
+		var thisTaskID = $(this).data('completion'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 		thisTaskRef.child(thisTaskID).update({
 			status: 'In Progress'
@@ -237,47 +242,21 @@ $(document).ready(function() {
 	$completedTasks.on('click', 'a', function(e) {
 		e.preventDefault();
 
-		modal.open({
-			content: $deleteConfirmationContent
-		})
-
-		var uid = firebase.getAuth().uid,
-			thisTaskID = $(this).data('deletion'),
+		// var uid = firebase.getAuth().uid,
+		 var thisTaskID = $(this).data('deletion'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
-		$('#deleteTask').on('click', function(e) {
-			thisTaskRef.child(thisTaskID).remove();
-			modal.close();
-			sortTasks();
-		})
-
-		$('#keepTask').on('click', function(e) {
-			modal.close();
-		})
+		deleteTasks(thisTaskID, thisTaskRef);
 	});
 
 	$inProgressTasks.on('click', 'a', function(e) {
 		e.preventDefault();
 
-		// modal.open({
-		// 	content: $deleteConfirmationContent
-		// })
-
-		var uid = firebase.getAuth().uid,
-			thisTaskID = $(this).data('deletion'),
+		// var uid = firebase.getAuth().uid,
+		var thisTaskID = $(this).data('deletion'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		deleteTasks(thisTaskID, thisTaskRef);
-
-		// $('#deleteTask').on('click', function(e) {
-		// 	thisTaskRef.child(thisTaskID).remove();
-		// 	modal.close();
-		// 	sortTasks();
-		// })
-
-		// $('#keepTask').on('click', function(e) {
-		// 	modal.close();
-		// })
 	});
 
 	// Delete tasks function
@@ -285,10 +264,6 @@ $(document).ready(function() {
 		modal.open({
 			content: $deleteConfirmationContent
 		})
-
-		// var uid = firebase.getAuth().uid,
-		// 	thisTaskID = $(this).data('deletion'),
-		// 	thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		$('#deleteTask').on('click', function(e) {
 			thisTaskRef.child(thisTaskID).remove();
