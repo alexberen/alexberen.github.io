@@ -339,7 +339,7 @@ $(document).ready(function() {
 		$editTaskForm.on('submit', function(e) {
 
 			// Requiring a name
-			if($taskName.val('')) {
+			if($newName.val('')) {
 				alert('You must give this task a name');
 			} else {
 				// Taking care of empty category
