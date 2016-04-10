@@ -86,40 +86,6 @@ $(document).ready(function() {
 		firebase.unauth();
 	})
 
-	// Sorting tasks and using handlebars to generate html
-	// function sortTasks() {
-	// 	$inProgressTasks.empty();
-	// 	$completedTasks.empty();
-
-	// 	var uid = firebase.getAuth().uid;
-
-	// 	firebase.child('users').child(uid).child('task').on('value', function(snapshot) {
-	// 		snapshot.forEach(function(childSnapshot) {
-	// 			var childData = childSnapshot.val();
-
-	// 			if(childData.status == 'In Progress') {
-	// 				var context = {
-	// 					taskName: childData.taskName,
-	// 					taskCategory: childData.taskCategory,
-	// 					taskDescription: childData.taskDescription,
-	// 					taskID: childData.taskID
-	// 				};
-	// 				var html = template(context);
-	// 				$inProgressTasks.append(html);
-	// 			} else {
-	// 				var context = {
-	// 					completedName: childData.taskName,
-	// 					completedCategory: childData.taskCategory,
-	// 					completedDescription: childData.taskDescription,
-	// 					taskID: childData.taskID
-	// 				};
-	// 				var html = templateCompleted(context);
-	// 				$completedTasks.append(html);
-	// 			}
-	// 		});
-	// 	});
-	// }
-
 	// Getting in progress tasks
 	function getInProgressTasks() {
 		$inProgressTasks.empty();
