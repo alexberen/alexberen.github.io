@@ -329,7 +329,9 @@ $(document).ready(function() {
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		var test = thisTaskRef.child(thisTaskID).once('value', function(snapshot) {
-			$newName.attr('placeholder', snapshot.val().taskName);
+			$newName.attr('value', snapshot.val().taskName);
+			$newDescription.text(snapshot.val().taskDescription);
+			$newCategory.attr('value', snapshot.val().taskCategory);
 
 			console.log(snapshot.val());
 			console.log(snapshot.val().taskName);
