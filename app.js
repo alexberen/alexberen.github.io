@@ -330,6 +330,7 @@ $(document).ready(function() {
 
 		console.log('thisTaskRef: ', thisTaskRef);
 		console.log('thisTaskID: ', thisTaskID);
+		console.log('thisTaskID.taskName: ' thisTaskID.taskName);
 
 		// var context = {
 		// 	editName: thisTaskRef.taskName,
