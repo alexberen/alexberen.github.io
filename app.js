@@ -45,6 +45,7 @@ $(document).ready(function() {
 			$userName.text(authData.google.displayName);
 			$loggingIn.hide();
 			getInProgressTasks();
+			getCategories();
 		}
 		return uid;
 	}
@@ -74,6 +75,7 @@ $(document).ready(function() {
 				$userName.text(authData.google.displayName);
 				$loggingIn.hide();
 				getInProgressTasks();
+				getCategories();
 
 				return uid;
 			}
@@ -157,7 +159,6 @@ $(document).ready(function() {
 			})
 		})
 	}
-	getCategories();
 
 	// Event listener for showing/hiding completed tasks
 	$showCompletedChevron.on('click', function(e) {
