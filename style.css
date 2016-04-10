@@ -16,10 +16,17 @@ li {
 	display: block;
 }
 
-#addTaskFormModal {
+/*#addTaskFormModal {
 	background: pink;
-}
+}*/
 
-#addTaskForm, #deleteTaskConfirmationModal, #changeUserNameModal {
+/*#addTaskForm, #deleteTaskConfirmationModal, #changeUserNameModal {
 	background: lime;
+}*/
+
+.modal {
+	background: #fff;
+	border: 2px #000 solid;
+	border-radius: 10px;
+	padding: 10px;
 }

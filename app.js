@@ -287,18 +287,19 @@ $(document).ready(function() {
 		})
 	})
 
-	$newUserName = $('newUserName');
-	$newUserName.on('submit', function(e) {
-		e.preventDefault();
-
-		console.log('Before update: ', $newUserName.val());
-		var uid = firebase.getAuth().uid;
+	var $newUserName = $('newUserName');
+	$newUserName.on('keypress', function(e) {
+		if(e.which == 13) {
+			console.log('You pressed enter', $newUserName.val());	
+		}
+		// console.log('Before update: ', $newUserName.val());
+		// var uid = firebase.getAuth().uid;
 		
-		firebase.child('users').child(uid).update({
-			name: $newUserName.val()
-		})
-		console.log('After update: ', $newUserName.val());
-		$userName.text($newUserName.val());
-		modal.close();
+		// firebase.child('users').child(uid).update({
+		// 	name: $newUserName.val()
+		// })
+		// console.log('After update: ', $newUserName.val());
+		// $userName.text($newUserName.val());
+		// modal.close();
 	})
 })
