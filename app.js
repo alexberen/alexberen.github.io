@@ -143,18 +143,22 @@ $(document).ready(function() {
 	// Getting categories
 	function getCategories() {
 		$categoriesUL.empty();
+				
+		var categoryList = [];
 
 		var uid = firebase.getAuth().uid;
 
 		firebase.child('users').child(uid).child('task').orderByChild('taskCategory').on('value', function(snapshot) {
 			snapshot.forEach(function(childSnapshot) {
 				var childData = childSnapshot.val();
+				console.log(childData);
+				// if(categoryList.indexOf())
 
-				var context = {
-					category: childData.taskCategory
-				};
-				var html = templateCategories(context);
-				$categoriesUL.append(html);
+				// var context = {
+				// 	category: childData.taskCategory
+				// };
+				// var html = templateCategories(context);
+				// $categoriesUL.append(html);
 			})
 		})
 	}
