@@ -324,6 +324,7 @@ $(document).ready(function() {
 		var $newName = $('#newName'),
 			$newDescription = $('#newDescription'),
 			$newCategory = $('#newCategory'),
+			$editTaskForm = $('#editTaskForm'),
 			uid = firebase.getAuth().uid,
 			thisTaskID = $(this).data('edit'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
@@ -332,35 +333,36 @@ $(document).ready(function() {
 			$newName.attr('value', snapshot.val().taskName);
 			$newDescription.text(snapshot.val().taskDescription);
 			$newCategory.attr('value', snapshot.val().taskCategory);
-
-			console.log(snapshot.val());
-			console.log(snapshot.val().taskName);
 		})
 
-		// var context = {
-		// 	editName: thisTaskRef.taskName,
-		// 	editCategory: thisTaskRef.taskCategory,
-		// 	editDescription: thisTaskRef.taskDescription,
-		// };
-		// var html = template(context);
-		// $editTaskForm.append(html);
+		// Event listener for submission
+		$editTaskForm.on('submit', function(e) {
+
+			// Requiring a name
+			if($taskName.val('')) {
+				alert('You must give this task a name');
+			} else {
+				// Taking care of empty category
+				var checkTaskCategory;
+				if($newCategory.val('')) {
+					checkTaskCategory = 'uncategorized'
+				} else {
+					checkTaskCategory = $taskCategory.val()
+				}
+
+				// Updating this task
+				thisTaskRef.child(thisTaskID).update({
+					taskName: $newName.val(),
+					taskDescription: $newDescription.val(),
+					taskCategory: $newCategory.val()
+				})
+
+				// get in progress tasks
+				getInProgressTasks();
+				
+				//close modal
+				modal.close();
+			}
+		})
 	})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 })
