@@ -337,6 +337,7 @@ $(document).ready(function() {
 
 		// Event listener for submission
 		$editTaskForm.on('submit', function(e) {
+			e.preventDefault();
 
 			// Requiring a name
 			if($newName.val('')) {
