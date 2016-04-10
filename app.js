@@ -39,10 +39,8 @@ $(document).ready(function() {
 			firebase.child('users').child(uid).on('value', function(snapshot) {
 				snapshot.forEach(function(childSnapshot) {
 					console.log('snapshot: ', snapshot);
-					var childData = childSnapshot.val();
+					var userName = childSnapshot.val();
 					console.log('childData: ', childData);
-					var userName = childData.name;
-					console.log('userName: ', userName);
 
 					return userName;
 				})
