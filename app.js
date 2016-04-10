@@ -18,7 +18,8 @@ $(document).ready(function() {
 		$deleteTaskConfirmationModal = $('#deleteTaskConfirmationModal'),
 		$deleteConfirmationContent = $deleteTaskConfirmationModal.detach(),
 		$changeUserNameModal = $('#changeUserNameModal'),
-		$changeUserNameContent = $changeUserNameModal.detach();
+		$changeUserNameContent = $changeUserNameModal.detach(),
+		authData = firebase.getAuth();
 
 	// Handlebars variables
 	var source = $('#tasktodo').html(),
@@ -33,8 +34,7 @@ $(document).ready(function() {
 	
 	function isAuthenicated() {
 		if(authData) {
-			var authData = firebase.getAuth(),
-				uid = authData.uid;
+			var uid = authData.uid;
 
 			$loggedInView.show();
 			$userName.text(authData.google.displayName);
@@ -56,8 +56,7 @@ $(document).ready(function() {
 				// console.log("Authenticated successfully with payload:", authData);
 
 				// Stores user in Firebase if they're new
-				var authData = firebase.getAuth(),
-					uid = authData.uid,
+				var uid = authData.uid,
 					doesUserExist = firebase.child('users').child(uid).child('task');
 				firebase.onAuth(function(authData) {
 					if (doesUserExist == null) {
