@@ -152,7 +152,10 @@ $(document).ready(function() {
 			snapshot.forEach(function(childSnapshot) {
 				var childData = childSnapshot.val();
 				console.log(childData);
-				// if(categoryList.indexOf())
+				if(categoryList.indexOf(childData[i].taskCategory) == -1) {
+					categoryList.push(childData[i].taskCategory)
+				}
+				console.log(categoryList);
 
 				// var context = {
 				// 	category: childData.taskCategory
