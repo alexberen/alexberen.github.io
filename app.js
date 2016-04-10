@@ -330,13 +330,14 @@ $(document).ready(function() {
 			thisTaskID = $(this).data('id'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
-		var context = {
-			editName: thisTaskRef.taskName,
-			editCategory: thisTaskRef.taskCategory,
-			editDescription: thisTaskRef.taskDescription,
-		};
-		var html = template(context);
-		$editTaskForm.append(html);
+		console.log(thisTaskRef.taskName);
+		// var context = {
+		// 	editName: thisTaskRef.taskName,
+		// 	editCategory: thisTaskRef.taskCategory,
+		// 	editDescription: thisTaskRef.taskDescription,
+		// };
+		// var html = template(context);
+		// $editTaskForm.append(html);
 	})
 
 
