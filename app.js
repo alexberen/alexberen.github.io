@@ -212,15 +212,16 @@ $(document).ready(function() {
 			taskRef = firebase.child('users').child(uid).child('task');
 
 		// Requiring a title
-		if ($taskName.val('')) {
-			modal.open({
-				content: $nameRequiredContent
-			});
-			$('#ok').on('click', function(e) {
-				e.preventDefault();
+		if($taskName.val('')) {
+			alert('You must give this task a name');
+			// modal.open({
+			// 	content: $nameRequiredContent
+			// });
+			// $('#ok').on('click', function(e) {
+			// 	e.preventDefault();
 
-				modal.close();
-			})
+			// 	modal.close();
+			// })
 		}
 
 		// Checking for empyt catgory
