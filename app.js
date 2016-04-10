@@ -35,6 +35,7 @@ $(document).ready(function() {
 	function isAuthenicated() {
 		if(authData) {
 			$loggedInView.show();
+			var uid = firebase.getAuth().uid;
 			$userName.text(firebase.child('users').child(uid).child('name'));
 			$loggingIn.hide();
 			sortTasks();
