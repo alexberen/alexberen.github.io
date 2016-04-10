@@ -328,7 +328,7 @@ $(document).ready(function() {
 			thisTaskID = $(this).data('id'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
-		console.log(thisTaskRef.name);
+		console.log(thisTaskRef);
 		// var context = {
 		// 	editName: thisTaskRef.taskName,
 		// 	editCategory: thisTaskRef.taskCategory,
