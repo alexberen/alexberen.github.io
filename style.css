@@ -28,11 +28,12 @@ li {
 	background: #fff;
 	border: 2px #000 solid;
 	border-radius: 10px;
-	padding: 10px;
+	margin: 10px;
 }
 
 .modal-close {
 	border: none;
+	background: #fff;
 	color: #000;
 	display: block;
 }
