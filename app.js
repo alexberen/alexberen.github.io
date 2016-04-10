@@ -51,7 +51,7 @@ $(document).ready(function() {
 
 		if(authData) {
 			$loggedInView.show();
-			$userName.text(userName;
+			$userName.text(userName);
 			$loggingIn.hide();
 			sortTasks();
 		}
