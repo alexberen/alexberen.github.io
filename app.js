@@ -246,7 +246,6 @@ $(document).ready(function() {
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		$('#deleteTask').on('click', function(e) {
-			console.log(this);
 			thisTaskRef.child(thisTaskID).remove();
 			modal.close();
 			sortTasks();
@@ -266,12 +265,11 @@ $(document).ready(function() {
 		// 	content: $deleteConfirmationContent
 		// })
 
-		// var uid = firebase.getAuth().uid,
-		// 	thisTaskID = $(this).data('deletion'),
-		// 	thisTaskRef = firebase.child('users').child(uid).child('task');
+		var uid = firebase.getAuth().uid,
+			thisTaskID = $(this).data('deletion'),
+			thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		// $('#deleteTask').on('click', function(e) {
-		// 	console.log(this);
 		// 	thisTaskRef.child(thisTaskID).remove();
 		// 	modal.close();
 		// 	sortTasks();
@@ -288,12 +286,11 @@ $(document).ready(function() {
 			content: $deleteConfirmationContent
 		})
 
-		var uid = firebase.getAuth().uid,
-			thisTaskID = $(this).data('deletion'),
-			thisTaskRef = firebase.child('users').child(uid).child('task');
+		// var uid = firebase.getAuth().uid,
+		// 	thisTaskID = $(this).data('deletion'),
+		// 	thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		$('#deleteTask').on('click', function(e) {
-			console.log(this);
 			thisTaskRef.child(thisTaskID).remove();
 			modal.close();
 			sortTasks();
