@@ -37,14 +37,21 @@ $(document).ready(function() {
 		function getUserName() {
 			var uid = firebase.getAuth().uid;
 			firebase.child('users').child(uid).on('value', function(snapshot) {
-				console.log(snapshot);
+				snapshot.forEach(function(childSnapshot) {
+					var childData = childSnapshot.val();
+					var userName = childData.name;
+
+					return userName;
+				})
+				return userName;
 			})
+			return userName;
 		}
 		getUserName();
 
 		if(authData) {
 			$loggedInView.show();
-			// $userName.text(firebase.child('users').child(uid).child('name'));
+			$userName.text(userName;
 			$loggingIn.hide();
 			sortTasks();
 		}
