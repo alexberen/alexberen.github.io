@@ -35,7 +35,7 @@ $(document).ready(function() {
 	function isAuthenicated() {
 		if(authData) {
 			$loggedInView.show();
-			$userName.text(authData.google.displayName);
+			$userName.text(firebase.child('users').child(uid).child('name'));
 			$loggingIn.hide();
 			sortTasks();
 		}
