@@ -40,7 +40,7 @@ $(document).ready(function() {
 				snapshot.forEach(function(childSnapshot) {
 					console.log('snapshot: ', snapshot);
 					var userName = childSnapshot.val();
-					console.log('childData: ', childData);
+					console.log('userName: ', userName);
 
 					return userName;
 				})
