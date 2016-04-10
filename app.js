@@ -285,13 +285,13 @@ $(document).ready(function() {
 		modal.open({
 			content: $changeUserNameContent
 		})
+		var $newUserName = $('newUserName');
+		$newUserName.on('keypress', function(e) {
+			if(e.which == 13) {
+				console.log('You pressed enter', $newUserName.val());	
+			}
+		})
 	})
-
-	var $newUserName = $('newUserName');
-	$newUserName.on('keypress', function(e) {
-		if(e.which == 13) {
-			console.log('You pressed enter', $newUserName.val());	
-		}
 		// console.log('Before update: ', $newUserName.val());
 		// var uid = firebase.getAuth().uid;
 		
@@ -301,5 +301,4 @@ $(document).ready(function() {
 		// console.log('After update: ', $newUserName.val());
 		// $userName.text($newUserName.val());
 		// modal.close();
-	})
 })
