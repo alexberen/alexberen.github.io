@@ -21,7 +21,6 @@ $(document).ready(function() {
 		$editTaskContent = $editTaskModal.detach(),
 		$editTaskForm = $('#editTaskForm'),
 		$categoriesUL = $('#categoriesUL'),
-		$customCategories = $('#customCategories'),
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -143,7 +142,7 @@ $(document).ready(function() {
 
 	// Getting categories
 	function getCategories() {
-		$customCategories.empty();
+		$categoriesUL.empty();
 
 		var uid = firebase.getAuth().uid;
 
