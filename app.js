@@ -237,29 +237,55 @@ $(document).ready(function() {
 	$completedTasks.on('click', 'a', function(e) {
 		e.preventDefault();
 
-		modal.open({
-			content: $deleteConfirmationContent
-		})
+		deleteTasks();
 
-		var uid = firebase.getAuth().uid,
-			thisTaskID = $(this).data('deletion'),
-			thisTaskRef = firebase.child('users').child(uid).child('task');
+		// modal.open({
+		// 	content: $deleteConfirmationContent
+		// })
 
-		$('#deleteTask').on('click', function(e) {
-			console.log(this);
-			thisTaskRef.child(thisTaskID).remove();
-			modal.close();
-			sortTasks();
-		})
+		// var uid = firebase.getAuth().uid,
+		// 	thisTaskID = $(this).data('deletion'),
+		// 	thisTaskRef = firebase.child('users').child(uid).child('task');
 
-		$('#keepTask').on('click', function(e) {
-			modal.close();
-		})
+		// $('#deleteTask').on('click', function(e) {
+		// 	console.log(this);
+		// 	thisTaskRef.child(thisTaskID).remove();
+		// 	modal.close();
+		// 	sortTasks();
+		// })
+
+		// $('#keepTask').on('click', function(e) {
+		// 	modal.close();
+		// })
 	});
 
 	$inProgressTasks.on('click', 'a', function(e) {
 		e.preventDefault();
 
+		deleteTasks();
+
+		// modal.open({
+		// 	content: $deleteConfirmationContent
+		// })
+
+		// var uid = firebase.getAuth().uid,
+		// 	thisTaskID = $(this).data('deletion'),
+		// 	thisTaskRef = firebase.child('users').child(uid).child('task');
+
+		// $('#deleteTask').on('click', function(e) {
+		// 	console.log(this);
+		// 	thisTaskRef.child(thisTaskID).remove();
+		// 	modal.close();
+		// 	sortTasks();
+		// })
+
+		// $('#keepTask').on('click', function(e) {
+		// 	modal.close();
+		// })
+	});
+
+	// Delete tasks function
+	function deleteTasks() {
 		modal.open({
 			content: $deleteConfirmationContent
 		})
@@ -278,7 +304,7 @@ $(document).ready(function() {
 		$('#keepTask').on('click', function(e) {
 			modal.close();
 		})
-	});
+	}
 
 	// Changing user name
 	// $userName.on('click', function(e) {
