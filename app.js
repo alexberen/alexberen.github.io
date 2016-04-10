@@ -340,7 +340,7 @@ $(document).ready(function() {
 			e.preventDefault();
 
 			// Requiring a name
-			if($newName.val('')) {
+			if($newName.val() == '') {
 				alert('You must give this task a name');
 			} else {
 				// Taking care of empty category
