@@ -40,6 +40,7 @@ $(document).ready(function() {
 				console.log(snapshot);
 			})
 		}
+		getUserName();
 
 		if(authData) {
 			$loggedInView.show();
