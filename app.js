@@ -331,7 +331,7 @@ $(document).ready(function() {
 		var test = thisTaskRef.once('value', function(snapshot) {
 			console.log(snapshot.val());
 		})
-		console.log('snapshot.thisTaskID');
+		console.log('snapshot.val().thisTaskID: ', snapshot.val().thisTaskID);
 
 		// var context = {
 		// 	editName: thisTaskRef.taskName,
