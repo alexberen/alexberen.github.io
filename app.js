@@ -146,7 +146,7 @@ $(document).ready(function() {
 
 		var uid = firebase.getAuth().uid;
 
-		firebase.child('users').child(uid).child('task').on('value', function(snapshot) {
+		firebase.child('users').child(uid).child('task').orderByChild('category').on('value', function(snapshot) {
 			snapshot.forEach(function(childSnapshot) {
 				var childData = childSnapshot.val();
 
