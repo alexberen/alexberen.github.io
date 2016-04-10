@@ -286,7 +286,7 @@ $(document).ready(function() {
 			content: $changeUserNameContent
 		})
 		var $newUserName = $('newUserName');
-		$newUserName.on('keypress', function(e) {
+		$newUserName.on('keyup', function(e) {
 			if(e.which == 13) {
 				e.preventDefault();
 				console.log('You pressed enter', $newUserName.val());	
