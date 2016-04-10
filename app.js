@@ -236,12 +236,12 @@ $(document).ready(function() {
 			taskRef = firebase.child('users').child(uid).child('task');
 
 		// Requiring a title
-		if($taskName.val('')) {
+		if($taskName.val() == '') {
 			alert('You must give this task a name');
 		} else {
 			// Checking for empty category
 			var checkTaskCategory;
-			if($taskCategory.val('')) {
+			if($taskCategory.val() == '') {
 				checkTaskCategory = 'uncategorized'
 			} else {
 				checkTaskCategory = $taskCategory.val()
