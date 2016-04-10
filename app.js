@@ -328,7 +328,7 @@ $(document).ready(function() {
 			thisTaskID = $(this).data('edit'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
-		var test = thisTaskRef.on('value', function(snapshot){
+		var test = thisTaskRef.child(thisTaskID).on('value', function(snapshot){
 			snapshot.forEach(function(childSnapshot) {
 				var childData = childSnapshot.val();
 				
