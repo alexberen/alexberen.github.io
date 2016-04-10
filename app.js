@@ -19,7 +19,6 @@ $(document).ready(function() {
 		$deleteConfirmationContent = $deleteTaskConfirmationModal.detach(),
 		$changeUserNameModal = $('#changeUserNameModal'),
 		$changeUserNameContent = $changeUserNameModal.detach(),
-		userName,
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -34,23 +33,9 @@ $(document).ready(function() {
 	$completedTasks.hide();
 	
 	function isAuthenicated() {
-
-		function getUserName() {
-			var uid = firebase.getAuth().uid;
-			firebase.child('users').child(uid).once('value', function(snapshot) {
-				var data = snapshot.val();
-				console.log('data: ', data);
-				var userName = data.name;
-				console.log('userName: ', userName);
-
-				userName = userName;
-			})
-		}
-		getUserName();
-
 		if(authData) {
 			$loggedInView.show();
-			$userName.text(userName);
+			$userName.text(authData.google.displayName);
 			$loggingIn.hide();
 			sortTasks();
 		}
@@ -295,22 +280,22 @@ $(document).ready(function() {
 		})
 	});
 
-	// Chaning user name
-	$userName.on('click', function(e) {
-		modal.open({
-			content: $changeUserNameContent
-		})
-		var $newUserName = $('#newUserName');
-		$newUserName.on('keypress', function(e) {
-			if(e.which == 13) {
-				var uid = firebase.getAuth().uid;
+	// Changing user name
+	// $userName.on('click', function(e) {
+	// 	modal.open({
+	// 		content: $changeUserNameContent
+	// 	})
+	// 	var $newUserName = $('#newUserName');
+	// 	$newUserName.on('keypress', function(e) {
+	// 		if(e.which == 13) {
+	// 			var uid = firebase.getAuth().uid;
 				
-				firebase.child('users').child(uid).update({
-					name: $newUserName.val()
-				})
-				$userName.text($newUserName.val());
-				modal.close();
-			}
-		})
-	})
+	// 			firebase.child('users').child(uid).update({
+	// 				name: $newUserName.val()
+	// 			})
+	// 			$userName.text($newUserName.val());
+	// 			modal.close();
+	// 		}
+	// 	})
+	// })
 })
