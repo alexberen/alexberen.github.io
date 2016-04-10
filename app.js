@@ -237,26 +237,24 @@ $(document).ready(function() {
 	$completedTasks.on('click', 'a', function(e) {
 		e.preventDefault();
 
-		deleteTasks();
+		modal.open({
+			content: $deleteConfirmationContent
+		})
 
-		// modal.open({
-		// 	content: $deleteConfirmationContent
-		// })
+		var uid = firebase.getAuth().uid,
+			thisTaskID = $(this).data('deletion'),
+			thisTaskRef = firebase.child('users').child(uid).child('task');
 
-		// var uid = firebase.getAuth().uid,
-		// 	thisTaskID = $(this).data('deletion'),
-		// 	thisTaskRef = firebase.child('users').child(uid).child('task');
+		$('#deleteTask').on('click', function(e) {
+			console.log(this);
+			thisTaskRef.child(thisTaskID).remove();
+			modal.close();
+			sortTasks();
+		})
 
-		// $('#deleteTask').on('click', function(e) {
-		// 	console.log(this);
-		// 	thisTaskRef.child(thisTaskID).remove();
-		// 	modal.close();
-		// 	sortTasks();
-		// })
-
-		// $('#keepTask').on('click', function(e) {
-		// 	modal.close();
-		// })
+		$('#keepTask').on('click', function(e) {
+			modal.close();
+		})
 	});
 
 	$inProgressTasks.on('click', 'a', function(e) {
