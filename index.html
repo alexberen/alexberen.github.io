@@ -83,14 +83,12 @@
 		<div id="editTaskModal">
 			<h2>Edit Task</h2>
 			<form id="editTaskForm">
-				<script id="taskedit" type="text/x-handlebars-template">
-					<div class="addTaskLabel">Task Name:</div>
-					<input type="text" placeholder="{{editName}}" id="newName" />
-					<div class="addTaskLabel">More Information:</div>
-					<textarea id="newDescription">{{editDescription}}</textarea>
-					<div class="addTaskLabel">Category:</div>
-					<input type="text" placeholder="{{editCategory}}" id="newCategory" />
-				</script>
+				<div class="addTaskLabel">Task Name:</div>
+				<input type="text" id="newName" />
+				<div class="addTaskLabel">More Information:</div>
+				<textarea id="newDescription"></textarea>
+				<div class="addTaskLabel">Category:</div>
+				<input type="text" id="newCategory" />
 				<p><input type="submit" value="Update Task" id="updateTaskButton" /></p>
 			</form>
 		</div>

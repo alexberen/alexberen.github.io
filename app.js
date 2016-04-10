@@ -26,9 +26,7 @@ $(document).ready(function() {
 	var source = $('#tasktodo').html(),
 		template = Handlebars.compile(source),
 		sourceCompleted = $('#taskdone').html(),
-		templateCompleted = Handlebars.compile(sourceCompleted),
-		sourceEdited = $('#taskedit').html(),
-		templateEdited = Handlebars.compile(sourceEdited);
+		templateCompleted = Handlebars.compile(sourceCompleted);
 
 	// Hide the logged in vew and complated tasks and check if user is logged in.
 	// If yes, hides login screen and shows logged in view
