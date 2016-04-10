@@ -246,7 +246,7 @@ $(document).ready(function() {
 	})
 
 	// Event listener for completing tasks
-	$inProgressTasks.on('click', 'button', function(e) {
+	$inProgressTasks.on('click', 'button.completeTask', function(e) {
 		var uid = firebase.getAuth().uid,
 			thisTaskID = $(this).data('id'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
@@ -316,7 +316,7 @@ $(document).ready(function() {
 	}
 
 	// Initialilzing modal for editing in progress tasks
-	$inProgressTasks.on('click', 'p', function(e) {
+	$inProgressTasks.on('click', 'button.editTask', function(e) {
 		modal.open({
 			content: $editTaskContent
 		})
@@ -325,7 +325,7 @@ $(document).ready(function() {
 			$newDescription = $('#newDescription'),
 			$newCategory = $('#newCategory'),
 			uid = firebase.getAuth().uid,
-			thisTaskID = $(this).data('id'),
+			thisTaskID = $(this).data('edit'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		console.log(thisTaskID);
