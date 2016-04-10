@@ -35,7 +35,7 @@
 			<h2>Add a Task</h2>
 			<form id="addTaskForm">
 				<div class="addTaskLabel">Task Name:</div>
-				<input type="text" id="taskName" required />
+				<input type="text" id="taskName" />
 				<div class="addTaskLabel">More Information:</div>
 				<textarea id="taskDescription"></textarea>
 				<div class="addTaskLabel">Category:</div>
@@ -83,6 +83,11 @@
 		<div id="changeUserNameModal">
 			<p>What would you like your new user name to be?</p>
 			<input type="text" placeholder="New User Name" id="newUserName" />
+		</div>
+
+		<div id="nameRequiredModal">
+			<p>You must give this task a name</p>
+			<button id="ok">OK</button>
 		</div>
 	</div>
 

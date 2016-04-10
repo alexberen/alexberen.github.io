@@ -19,6 +19,8 @@ $(document).ready(function() {
 		$deleteConfirmationContent = $deleteTaskConfirmationModal.detach(),
 		$changeUserNameModal = $('#changeUserNameModal'),
 		$changeUserNameContent = $changeUserNameModal.detach(),
+		$nameRequiredModal = $('#nameRequiredModal'),
+		$nameRequiredContent = $nameRequiredModal.detach(),
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -209,12 +211,28 @@ $(document).ready(function() {
 			uid = firebase.getAuth().uid,
 			taskRef = firebase.child('users').child(uid).child('task');
 
+		// Requiring a title
+		if ($taskName.val() == '') {
+			modal.open({
+				content: $nameRequiredContent
+			});
+			$('#ok').on('click', function(e) {
+				e.preventDefault();
+
+				modal.close();
+			})
+		}
+
 		// Create 'task' object in Firebase
 		var newTaskRef = taskRef.push({
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
-			taskCategory: $taskCategory.val()
+			if($taskCategory.val() == '') {
+				taskCategory: 'uncategorized'
+			} else {
+				taskCategory: $taskCategory.val()
+			}
 		});
 		var taskID = newTaskRef.key();
 		newTaskRef.update({
