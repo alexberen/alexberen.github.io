@@ -259,8 +259,6 @@ $(document).ready(function() {
 	$inProgressTasks.on('click', 'a', function(e) {
 		e.preventDefault();
 
-		deleteTasks();
-
 		// modal.open({
 		// 	content: $deleteConfirmationContent
 		// })
@@ -268,6 +266,8 @@ $(document).ready(function() {
 		var uid = firebase.getAuth().uid,
 			thisTaskID = $(this).data('deletion'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
+
+		deleteTasks();
 
 		// $('#deleteTask').on('click', function(e) {
 		// 	thisTaskRef.child(thisTaskID).remove();
