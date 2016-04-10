@@ -69,10 +69,11 @@ $(document).ready(function() {
 				$userName.text(authData.google.displayName);
 				$loggingIn.hide();
 				sortTasks();
+				
+				return uid;
 			}
-			return uid;
 		});
-		return uid;
+		// return uid;
 	})
 
 	// Event Listener for logging out
