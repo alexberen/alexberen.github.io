@@ -223,17 +223,20 @@ $(document).ready(function() {
 			})
 		}
 
+		// Checking for empyt catgory
+		var checkTaskCategory;
+		if($taskCategory.val('')) {
+			checkTaskCategory = 'uncategorized'
+		} else {
+			checkTaskCategory = $taskCategory.val()
+		}
+
 		// Create 'task' object in Firebase
-		var checkCategory = $taskCategory.val();
 		var newTaskRef = taskRef.push({
 			status: 'In Progress',
 			taskName: $taskName.val(),
 			taskDescription: $taskDescription.val(),
-			if(checkCategory == '') {
-				taskCategory: 'uncategorized'
-			} else {
-				taskCategory: $taskCategory.val()
-			}
+			taskCategory: checkTaskCategory
 		});
 		var taskID = newTaskRef.key();
 		newTaskRef.update({
