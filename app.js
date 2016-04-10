@@ -317,6 +317,10 @@ $(document).ready(function() {
 
 	// Initialilzing modal for editing in progress tasks
 	$inProgressTasks.on('click', 'p', function(e) {
+		modal.open({
+			content: $editTaskContent
+		})
+
 		var $newName = $('#newName'),
 			$newDescription = $('#newDescription'),
 			$newCategory = $('#newCategory'),
@@ -324,17 +328,13 @@ $(document).ready(function() {
 			thisTaskID = $(this).data('id'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
-			modal.open({
-				content: $editTaskContent
-			})
-
-			var context = {
-				editName: thisTaskRef.taskName,
-				editCategory: thisTaskRef.taskCategory,
-				editDescription: thisTaskRef.taskDescription,
-			};
-			var html = template(context);
-			$editTaskForm.append(html);
+		var context = {
+			editName: thisTaskRef.taskName,
+			editCategory: thisTaskRef.taskCategory,
+			editDescription: thisTaskRef.taskDescription,
+		};
+		var html = template(context);
+		$editTaskForm.append(html);
 	})
 
 
