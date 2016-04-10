@@ -2,7 +2,7 @@ ul#inProgressTasks {
 	list-style: none;
 }
 
-li {
+ul#inProgressTasks li {
 	width: 50%;
 	border: 1px tomato solid;
 }
