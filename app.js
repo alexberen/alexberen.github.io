@@ -348,7 +348,7 @@ $(document).ready(function() {
 				if($newCategory.val() == '') {
 					checkTaskCategory = 'uncategorized'
 				} else {
-					checkTaskCategory = $taskCategory.val()
+					checkTaskCategory = $newCategory.val()
 				}
 
 				// Updating this task
