@@ -285,10 +285,12 @@ $(document).ready(function() {
 		modal.open({
 			content: $changeUserNameContent
 		})
-		var $newUserName = $('newUserName');
+		var $newUserName = $('#newUserName');
 		$newUserName.on('keypress', function(e) {
 			e.preventDefault();
-			console.log(e.which);
+			if(e.which == 13) {
+				console.log('You pressed enter ', $newUserName.val());
+			}
 		})
 	})
 		// console.log('Before update: ', $newUserName.val());
