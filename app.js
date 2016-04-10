@@ -345,7 +345,7 @@ $(document).ready(function() {
 			} else {
 				// Taking care of empty category
 				var checkTaskCategory;
-				if($newCategory.val('')) {
+				if($newCategory.val() == '') {
 					checkTaskCategory = 'uncategorized'
 				} else {
 					checkTaskCategory = $taskCategory.val()
