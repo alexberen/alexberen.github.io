@@ -330,7 +330,7 @@ $(document).ready(function() {
 
 		var test = thisTaskRef.once('value', function(snapshot) {
 			console.log(snapshot.val());
-			console.log('snapshot.thisTaskID: ', snapshot.thisTaskID);
+			console.log('snapshot.child(thisTaskID): ', snapshot.child(thisTaskID));
 		})
 
 		// var context = {
