@@ -328,13 +328,8 @@ $(document).ready(function() {
 			thisTaskID = $(this).data('edit'),
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
-		var test = thisTaskRef.child(thisTaskID).on('value', function(snapshot){
-			snapshot.forEach(function(childSnapshot) {
-				var childData = childSnapshot.val();
-				
-				console.log(childData.taskName);
-			})
-		})
+		console.log('thisTaskRef: ', thisTaskRef);
+		console.log('thisTaskID: ', thisTaskID);
 
 		// var context = {
 		// 	editName: thisTaskRef.taskName,
