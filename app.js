@@ -22,7 +22,7 @@ $(document).ready(function() {
 		$editTaskForm = $('#editTaskForm'),
 		$snazzyModal = $('#snazzyModal'),
 		$snazzyContent = $snazzyModal.detach(),
-		$snazzy = ('#snazzy'),
+		$snazzy = $('#snazzy'),
 		authData = firebase.getAuth();
 
 	// Handlebars variables
