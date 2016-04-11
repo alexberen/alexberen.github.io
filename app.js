@@ -383,6 +383,8 @@ $(document).ready(function() {
 		})
 
 		$marqueeCheck.on('click', function(e) {
+			e.preventDefault();
+			
 			var $marquee = $('<marquee></marquee>'),
 				$header = $('header');
 
