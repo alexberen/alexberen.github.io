@@ -300,22 +300,23 @@ $(document).ready(function() {
 		}
 	})
 
-	// Event listener for seting completed tasks back to in progress
+	// Event listener for setting completed tasks back to in progress
 	$completedTasks.on('click', 'button', function(e) {
 		var uid = firebase.getAuth().uid,
 			thisTaskID = $(this).data('completion'),
-			thisTaskRef = firebase.child('users').child(uid).child('task');
+			thisTaskRef = firebase.child('users').child(uid).child('task'),
+			thisCategoryRef = thisTaskRef.child(thisTaskID).taskCategory;
 		
 		thisTaskRef.child(thisTaskID).update({
 			status: 'In Progress'
 		});
 
 		// Putting categories in categoryList array
-		var categorySort = doesCategoryExist($taskCategory.val());
+		var categorySort = doesCategoryExist(thisCategoryRef);
 		if(categorySort) {
 			return 'category exists'
 		} else {
-			categoryList.push($taskCategory.val())
+			categoryList.push(thisCategoryRef)
 		}
 
 		getInProgressTasks();
