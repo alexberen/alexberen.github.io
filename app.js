@@ -381,14 +381,13 @@ $(document).ready(function() {
 		})
 
 		var $marqueeCheck = $('#marqueeCheck'),
-			$marquee = $('<marquee></marquee>'),
+			$marquee = $('marquee'),
 			$header = $('header');
 
 		$marqueeCheck.on('click', function(e) {
 			e.preventDefault();	
 
 			$marquee.append($header);
-			$loggedInView.append($marquee);
 
 			modal.close();
 
