@@ -21,6 +21,7 @@ $(document).ready(function() {
 		$editTaskContent = $editTaskModal.detach(),
 		$editTaskForm = $('#editTaskForm'),
 		$categoriesUL = $('#categoriesUL'),
+		categoryList = [],
 		authData = firebase.getAuth();
 
 	// Handlebars variables
@@ -142,28 +143,24 @@ $(document).ready(function() {
 
 	// Getting categories
 	function getCategories() {
-		$categoriesUL.empty();
-				
-		var categoryList = [];
-
-		var uid = firebase.getAuth().uid;
-
-		firebase.child('users').child(uid).child('task').orderByChild('taskCategory').on('value', function(snapshot) {
-			snapshot.forEach(function(childSnapshot) {
-				var childData = childSnapshot.val();
-				console.log(childData);
-				if(categoryList.indexOf(childData[i].taskCategory) == -1) {
-					categoryList.push(childData[i].taskCategory)
-				}
-				console.log(categoryList);
-
-				// var context = {
-				// 	category: childData.taskCategory
-				// };
-				// var html = templateCategories(context);
-				// $categoriesUL.append(html);
-			})
+		categoryList.forEach(function(category) {
+			var context = {
+				category: category
+			};
+			var html = templateCategories(context);
+			$categoriesUL.append(html);			
 		})
+	}
+
+	// Checks if a category exists
+	function doesCategoryExist(category) {
+		for(var i = 0; i < categoryList.length; i++) {
+			if(categoryList.indexOf(category[i]) == -1) {
+				return false
+			} else {
+				return true
+			}
+		}
 	}
 
 	// Event listener for showing/hiding completed tasks
@@ -265,6 +262,14 @@ $(document).ready(function() {
 				taskID: taskID
 			});
 
+			// Putting categories in categoryList array
+			var categorySort = doesCategoryExist($taskCategory.val());
+			if(categorySort) {
+				return 'category exists'
+			} else {
+				categoryList.push($taskCategory.val())
+			}
+
 			// get in progress tasks and categories
 			getInProgressTasks();
 			getCategories();
@@ -304,6 +309,14 @@ $(document).ready(function() {
 		thisTaskRef.child(thisTaskID).update({
 			status: 'In Progress'
 		});
+
+		// Putting categories in categoryList array
+		var categorySort = doesCategoryExist($taskCategory.val());
+		if(categorySort) {
+			return 'category exists'
+		} else {
+			categoryList.push($taskCategory.val())
+		}
 
 		getInProgressTasks();
 		getCategories();
@@ -393,6 +406,14 @@ $(document).ready(function() {
 					taskDescription: $newDescription.val(),
 					taskCategory: $newCategory.val()
 				})
+
+				// Putting categories in categoryList array
+				var categorySort = doesCategoryExist($newDescription.val());
+				if(categorySort) {
+					return 'category exists'
+				} else {
+					categoryList.push($newDescription.val())
+				}
 
 				// get in progress tasks and categories
 				getInProgressTasks();
