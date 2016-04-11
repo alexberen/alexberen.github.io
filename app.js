@@ -388,6 +388,7 @@ $(document).ready(function() {
 			e.preventDefault();	
 
 			$marquee.append($header);
+			$loggedInView.append($marquee);
 
 			modal.close();
 
