@@ -373,7 +373,7 @@ $(document).ready(function() {
 	})
 
 	// Make it snazzy
-	$snazzy.on('change', function(e) {
+	$snazzy.on('click', function(e) {
 		e.preventDefault();
 
 		var $marqueeCheck = $('marqueeCheck');
