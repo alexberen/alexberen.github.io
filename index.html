@@ -53,8 +53,8 @@
 			<h2>Tasks In Progress</h2>
 			<ul id="inProgressTasks">
 				<script id="tasktodo" type="text/x-handlebars-template">
-					<li class="{{taskDescription}}">
-						<p class="taskName">{{taskName}}</p>
+					<li class="{{taskCategory}}">
+						<h3 class="taskName">{{taskName}}</h3>
 						<p class="taskCategory">Filed in: {{taskCategory}}</p>
 						<p class="taskDescription">{{taskDescription}}</p>
 						<button data-id="{{taskID}}" class="completeTask">Complete Task</button> | <button data-edit="{{taskID}}" class="editTask">Edit Task</button> | <a href="" data-deletion="{{taskID}}">Delete Task</a>
@@ -67,8 +67,8 @@
 			<h2>Completed Tasks <i id="showCompletedChevron" class="fa fa-angle-right"></i></h2>
 			<ul id="completedTasks">
 				<script id="taskdone" type="text/x-handlebars-template">
-					<li class="{{taskDescription}}">
-						<p class="completedName">{{completedName}}</p>
+					<li class="{{completedCategory}}">
+						<h3 class="completedName">{{completedName}}</h3>
 						<p class="completedCategory">Filed in: {{completedCategory}}</p>
 						<p class="completedDescription">{{completedDescription}}</p>
 						<button data-completion="{{taskID}}">Set to In Progress</button> | <a href="" data-deletion="{{taskID}}">Delete Task</a>
