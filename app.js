@@ -329,7 +329,7 @@ $(document).ready(function() {
 			thisTaskRef = firebase.child('users').child(uid).child('task');
 
 		// Filling it edit form with existing task info
-		var test = thisTaskRef.child(thisTaskID).once('value', function(snapshot) {
+		var test = thisTaskRef.child(thisTaskID).on('value', function(snapshot) {
 			$newName.attr('value', snapshot.val().taskName);
 			$newDescription.text(snapshot.val().taskDescription);
 			$newCategory.attr('value', snapshot.val().taskCategory);
