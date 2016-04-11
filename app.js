@@ -331,7 +331,7 @@ $(document).ready(function() {
 		// Filling it edit form with existing task info
 		var test = thisTaskRef.child(thisTaskID).on('value', function(snapshot) {
 			$newName.val(snapshot.val().taskName);
-			$newDescription.text(snapshot.val().taskDescription);
+			$newDescription.val(snapshot.val().taskDescription);
 			$newCategory.val(snapshot.val().taskCategory);
 		})
 
