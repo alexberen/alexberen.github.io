@@ -382,7 +382,7 @@ $(document).ready(function() {
 			content: $snazzyContent
 		})
 
-		$marqueeCheck.on('change', function(e) {
+		$marqueeCheck.on('click', function(e) {
 			var $marquee = $('<marquee></marquee>'),
 				$header = $('header');
 
