@@ -358,6 +358,9 @@ $(document).ready(function() {
 			getInProgressTasks();
 			
 			//close modal
+			$newName.val('').blur();
+			$newDescription.val('');
+			$newCategory.val('').blur();
 			modal.close();
 		})
 	})
