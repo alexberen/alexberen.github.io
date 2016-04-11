@@ -20,17 +20,16 @@ $(document).ready(function() {
 		$editTaskModal = $('#editTaskModal'),
 		$editTaskContent = $editTaskModal.detach(),
 		$editTaskForm = $('#editTaskForm'),
-		$categoriesUL = $('#categoriesUL'),
-		categoryList = [],
+		$snazzyModal = $('#snazzyModal'),
+		$snazzyContent = $snazzyModal.detach(),
+		$snazzy = ('#snazzy'),
 		authData = firebase.getAuth();
 
 	// Handlebars variables
 	var source = $('#tasktodo').html(),
 		template = Handlebars.compile(source),
 		sourceCompleted = $('#taskdone').html(),
-		templateCompleted = Handlebars.compile(sourceCompleted),
-		sourceCategories = $('#categoryTemplate').html(),
-		templateCategories = Handlebars.compile(sourceCategories);
+		templateCompleted = Handlebars.compile(sourceCompleted);
 
 	// Hide the logged in vew and complated tasks and check if user is logged in.
 	// If yes, hides login screen and shows logged in view
@@ -45,7 +44,6 @@ $(document).ready(function() {
 			$userName.text(authData.google.displayName);
 			$loggingIn.hide();
 			getInProgressTasks();
-			getCategories();
 		}
 		return uid;
 	}
@@ -75,7 +73,6 @@ $(document).ready(function() {
 				$userName.text(authData.google.displayName);
 				$loggingIn.hide();
 				getInProgressTasks();
-				getCategories();
 
 				return uid;
 			}
@@ -139,28 +136,6 @@ $(document).ready(function() {
 				}
 			})
 		})
-	}
-
-	// Getting categories
-	function getCategories() {
-		categoryList.forEach(function(category) {
-			var context = {
-				category: category
-			};
-			var html = templateCategories(context);
-			$categoriesUL.append(html);			
-		})
-	}
-
-	// Checks if a category exists
-	function doesCategoryExist(category) {
-		for(var i = 0; i < categoryList.length; i++) {
-			if(categoryList.indexOf(category) == -1) {
-				return false
-			} else {
-				return true
-			}
-		}
 	}
 
 	// Event listener for showing/hiding completed tasks
@@ -255,24 +230,15 @@ $(document).ready(function() {
 				status: 'In Progress',
 				taskName: $taskName.val(),
 				taskDescription: $taskDescription.val(),
-				taskCategory: checkTaskCategory
+				taskCategory: checkTaskCategory.toLowerCase()
 			});
 			var taskID = newTaskRef.key();
 			newTaskRef.update({
 				taskID: taskID
 			});
 
-			// Putting categories in categoryList array
-			var categorySort = doesCategoryExist($taskCategory.val());
-			if(categorySort) {
-				return 'category exists'
-			} else {
-				categoryList.push($taskCategory.val())
-			}
-
-			// get in progress tasks and categories
+			// get in progress tasks
 			getInProgressTasks();
-			getCategories();
 			
 			// clear form fields and close modal
 			$taskName.val('').blur();
@@ -293,7 +259,6 @@ $(document).ready(function() {
 		});
 
 		getInProgressTasks();
-		getCategories();
 
 		if($showCompletedChevron.hasClass('fa-rotate-90')) {
 			getCompletedTasks();
@@ -311,16 +276,7 @@ $(document).ready(function() {
 			status: 'In Progress'
 		});
 
-		// Putting categories in categoryList array
-		var categorySort = doesCategoryExist(thisCategoryRef);
-		if(categorySort) {
-			return 'category exists'
-		} else {
-			categoryList.push(thisCategoryRef)
-		}
-
 		getInProgressTasks();
-		getCategories();
 		getCompletedTasks();
 	})
 
@@ -355,7 +311,6 @@ $(document).ready(function() {
 			thisTaskRef.child(thisTaskID).remove();
 			getInProgressTasks();
 			getCompletedTasks();
-			getCategories();
 			modal.close();
 		})
 
@@ -405,24 +360,37 @@ $(document).ready(function() {
 				thisTaskRef.child(thisTaskID).update({
 					taskName: $newName.val(),
 					taskDescription: $newDescription.val(),
-					taskCategory: $newCategory.val()
+					taskCategory: $newCategory.val().toLowerCase()
 				})
 
-				// Putting categories in categoryList array
-				var categorySort = doesCategoryExist($newDescription.val());
-				if(categorySort) {
-					return 'category exists'
-				} else {
-					categoryList.push($newDescription.val())
-				}
-
-				// get in progress tasks and categories
+				// get in progress tasks
 				getInProgressTasks();
-				getCategories();
 				
 				//close modal
 				modal.close();
 			}
 		})
+	})
+
+	// Make it snazzy
+	$snazzy.on('click', function(e) {
+		e.preventDefault();
+
+		var $marqueeCheck = $('marqueeCheck');
+
+		modal.open({
+			content: $snazzyContent
+		})
+
+		$marqueeCheck.on('change', function(e) {
+			var $marquee = $('<marquee></marquee>'),
+				$header = $('header');
+
+			$marquee.append($header);
+
+			modal.close();
+
+		})
+
 	})
 })

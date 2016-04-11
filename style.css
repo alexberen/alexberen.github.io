@@ -1,8 +1,8 @@
-ul#inProgressTasks {
+ul#inProgressTasks, ul#completedTasks {
 	list-style: none;
 }
 
-ul#inProgressTasks li {
+ul#inProgressTasks li, ul#completedTasks li {
 	width: 50%;
 	border: 1px tomato solid;
 }

@@ -29,7 +29,9 @@
 			<h2>Because somewhere there's a task you should be doing...eventually</h2>
 		</header>
 
-		<a href="" id="logOut">Log Out</a>
+		<div id="logOutAndSnazzy">
+			<a href="" id="logOut">Log Out</a> | <a href="" id="snazzy">Make it snazzy!</a>
+		</div>
 
 		<div id="addTaskFormModal">
 			<h2>Add a Task</h2>
@@ -47,19 +49,10 @@
 		<button id="createNewTask">Create A New Task</button>
 
 		<div id="inProgressContainer">
-			<p id="categoryLinks">
-				<p>Categories:</p>
-				<div>All</div>
-				<ul id="categoriesUL">
-					<script id="categoryTemplate" type="text/x-handlebars-template">
-						<li>{{category}}</li>
-					</script>
-				</ul>
-			</p>
 			<h2>Tasks In Progress</h2>
 			<ul id="inProgressTasks">
 				<script id="tasktodo" type="text/x-handlebars-template">
-					<li>
+					<li class="{{taskDescription}}">
 						<p class="taskName">{{taskName}}</p>
 						<p class="taskCategory">Filed in: {{taskCategory}}</p>
 						<p class="taskDescription">{{taskDescription}}</p>
@@ -73,9 +66,9 @@
 			<h2>Completed Tasks <i id="showCompletedChevron" class="fa fa-angle-right"></i></h2>
 			<ul id="completedTasks">
 				<script id="taskdone" type="text/x-handlebars-template">
-					<li>
+					<li class="{{taskDescription}}">
 						<p class="completedName">{{completedName}}</p>
-						<p class="completedCategory">{{completedCategory}}</p>
+						<p class="completedCategory">Filed in: {{completedCategory}}</p>
 						<p class="completedDescription">{{completedDescription}}</p>
 						<button data-completion="{{taskID}}">Set to In Progress</button> | <a href="" data-deletion="{{taskID}}">Delete Task</a>
 					</li>
@@ -98,6 +91,14 @@
 				<div class="addTaskLabel">Category:</div>
 				<input type="text" id="newCategory" />
 				<p><input type="submit" value="Update Task" id="updateTaskButton" /></p>
+			</form>
+		</div>
+
+		<div id="snazzyModal">
+			<h2>Make It Snazzy!</h2>
+			<p>Customize your to do list</p>
+			<form id="snazzyForm">
+				<label><input type="checkbox" id="marqueeCheck" />Marquee!</label>
 			</form>
 		</div>
 	</div>
