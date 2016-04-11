@@ -330,9 +330,9 @@ $(document).ready(function() {
 
 		// Filling it edit form with existing task info
 		var test = thisTaskRef.child(thisTaskID).on('value', function(snapshot) {
-			$newName.attr('value', snapshot.val().taskName);
+			$newName.val(snapshot.val().taskName);
 			$newDescription.text(snapshot.val().taskDescription);
-			$newCategory.attr('value', snapshot.val().taskCategory);
+			$newCategory.val(snapshot.val().taskCategory);
 		})
 
 		// Event listener for submission
