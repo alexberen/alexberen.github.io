@@ -376,17 +376,16 @@ $(document).ready(function() {
 	$snazzy.on('click', function(e) {
 		e.preventDefault();
 
-		var $marqueeCheck = $('marqueeCheck');
-
 		modal.open({
 			content: $snazzyContent
 		})
 
+		var $marqueeCheck = $('#marqueeCheck'),
+			$marquee = $('<marquee></marquee>'),
+			$header = $('header');
+
 		$marqueeCheck.on('click', function(e) {
-			e.preventDefault();
-			
-			var $marquee = $('<marquee></marquee>'),
-				$header = $('header');
+			e.preventDefault();	
 
 			$marquee.append($header);
 
