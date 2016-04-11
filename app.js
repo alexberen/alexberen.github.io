@@ -155,7 +155,7 @@ $(document).ready(function() {
 	// Checks if a category exists
 	function doesCategoryExist(category) {
 		for(var i = 0; i < categoryList.length; i++) {
-			if(categoryList.indexOf(category[i]) == -1) {
+			if(categoryList.indexOf(category) == -1) {
 				return false
 			} else {
 				return true
