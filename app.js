@@ -213,39 +213,34 @@ $(document).ready(function() {
 			uid = firebase.getAuth().uid,
 			taskRef = firebase.child('users').child(uid).child('task');
 
-		// Requiring a title
-		if($taskName.val() == '') {
-			alert('You must give this task a name');
+		// Checking for empty category
+		var checkTaskCategory;
+		if($taskCategory.val() == '') {
+			checkTaskCategory = 'uncategorized'
 		} else {
-			// Checking for empty category
-			var checkTaskCategory;
-			if($taskCategory.val() == '') {
-				checkTaskCategory = 'uncategorized'
-			} else {
-				checkTaskCategory = $taskCategory.val()
-			}
-
-			// Create 'task' object in Firebase
-			var newTaskRef = taskRef.push({
-				status: 'In Progress',
-				taskName: $taskName.val(),
-				taskDescription: $taskDescription.val(),
-				taskCategory: checkTaskCategory.toLowerCase()
-			});
-			var taskID = newTaskRef.key();
-			newTaskRef.update({
-				taskID: taskID
-			});
-
-			// get in progress tasks
-			getInProgressTasks();
-			
-			// clear form fields and close modal
-			$taskName.val('').blur();
-			$taskDescription.val('');
-			$taskCategory.val('').blur();
-			modal.close();			
+			checkTaskCategory = $taskCategory.val()
 		}
+
+		// Create 'task' object in Firebase
+		var newTaskRef = taskRef.push({
+			status: 'In Progress',
+			taskName: $taskName.val(),
+			taskDescription: $taskDescription.val(),
+			taskCategory: checkTaskCategory.toLowerCase()
+		});
+		var taskID = newTaskRef.key();
+		newTaskRef.update({
+			taskID: taskID
+		});
+
+		// get in progress tasks
+		getInProgressTasks();
+		
+		// clear form fields and close modal
+		$taskName.val('').blur();
+		$taskDescription.val('');
+		$taskCategory.val('').blur();
+		modal.close();			
 	})
 
 	// Event listener for completing tasks
@@ -344,31 +339,26 @@ $(document).ready(function() {
 		$editTaskForm.on('submit', function(e) {
 			e.preventDefault();
 
-			// Requiring a name
-			if($newName.val() == '') {
-				alert('You must give this task a name');
+			// Taking care of empty category
+			var checkTaskCategory;
+			if($newCategory.val() == '') {
+				checkTaskCategory = 'uncategorized'
 			} else {
-				// Taking care of empty category
-				var checkTaskCategory;
-				if($newCategory.val() == '') {
-					checkTaskCategory = 'uncategorized'
-				} else {
-					checkTaskCategory = $newCategory.val()
-				}
-
-				// Updating this task
-				thisTaskRef.child(thisTaskID).update({
-					taskName: $newName.val(),
-					taskDescription: $newDescription.val(),
-					taskCategory: $newCategory.val().toLowerCase()
-				})
-
-				// get in progress tasks
-				getInProgressTasks();
-				
-				//close modal
-				modal.close();
+				checkTaskCategory = $newCategory.val()
 			}
+
+			// Updating this task
+			thisTaskRef.child(thisTaskID).update({
+				taskName: $newName.val(),
+				taskDescription: $newDescription.val(),
+				taskCategory: $newCategory.val().toLowerCase()
+			})
+
+			// get in progress tasks
+			getInProgressTasks();
+			
+			//close modal
+			modal.close();
 		})
 	})
 
