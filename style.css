@@ -12,7 +12,7 @@ ul#inProgressTasks li, ul#completedTasks li {
 	z-index: 1000;
 }
 
-#logOut, #createNewTask {
+#createNewTask {
 	display: block;
 }
 
